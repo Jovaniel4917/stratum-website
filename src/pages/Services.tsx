@@ -126,7 +126,7 @@ const Services = () => {
                   </div>
 
                   <div className="pt-4 border-t border-gray-100">
-                    <Badge variant="outline" className="bg-accent/10 text-primary border-accent/20">
+                    <Badge variant="outline" className="text-primary border-accent/20">
                       {service.deliverables}
                     </Badge>
                   </div>
