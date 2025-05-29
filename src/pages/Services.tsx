@@ -102,7 +102,7 @@ const Services = () => {
                       </div>
                     </div>
                     <div className="flex-1">
-                      <CardTitle className="font-telegraf text-2xl text-primary mb-3">
+                      <CardTitle className="font-telegraf text-2xl text-primary mb-6">
                         {service.title}
                       </CardTitle>
                       <p className="font-telegraf text-gray-600 leading-relaxed">
@@ -126,7 +126,7 @@ const Services = () => {
                   </div>
 
                   <div className="pt-4 border-t border-gray-100">
-                    <Badge variant="outline" className="bg-accent/10 text-grey-100 border-accent/20">
+                    <Badge variant="outline" className="bg-accent/10 text-primary border-accent/20">
                       {service.deliverables}
                     </Badge>
                   </div>
