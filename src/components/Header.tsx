@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { StratumLogo } from "./StratumLogo";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,7 +23,11 @@ export const Header = () => {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <StratumLogo className="h-10 w-10" />
+            <img 
+              src="/lovable-uploads/2fa2d4e2-201d-491d-abf3-9f4702b8293c.png" 
+              alt="Stratum Logo" 
+              className="h-10 w-auto"
+            />
             <span className="font-telegraf font-bold text-2xl text-primary">
               Stratum PR
             </span>
