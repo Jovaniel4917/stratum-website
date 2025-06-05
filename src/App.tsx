@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,9 +19,6 @@ import FAQ from "./pages/FAQ";
 import Privacy from "./pages/Privacy";
 import Sitemap from "./pages/Sitemap";
 import NotFound from "./pages/NotFound";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import Tools from "./pages/Tools";
 
 const queryClient = new QueryClient();
 
@@ -44,10 +42,6 @@ const App = () => (
                 {/* Legacy redirects for case-studies URLs */}
                 <Route path="/case-studies" element={<Projects />} />
                 <Route path="/case-studies/:slug" element={<ProjectDetail />} />
-                {/* New routes for blog and tools */}
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:slug" element={<BlogPost />} />
-                <Route path="/tools" element={<Tools />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/privacy" element={<Privacy />} />

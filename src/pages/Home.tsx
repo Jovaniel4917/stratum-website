@@ -11,7 +11,6 @@ import { lazy, Suspense, useState, useEffect } from "react";
 
 // Lazy load non-critical components with better loading states
 const WhyWorkWithUsSection = lazy(() => import("@/components/WhyWorkWithUsSection"));
-const FeaturedResources = lazy(() => import("@/components/FeaturedResources"));
 
 const Home = () => {
   const { t } = useLanguage();
@@ -263,15 +262,6 @@ const Home = () => {
             </div>
           </div>
         </section>
-
-        {/* Featured Resources Section - NEW */}
-        <Suspense fallback={
-          <div className="h-96 bg-gray-50 section-container flex items-center justify-center">
-            <div className="img-loading w-32 h-8 rounded"></div>
-          </div>
-        }>
-          <FeaturedResources />
-        </Suspense>
 
         {/* Meet Our Team Section */}
         <section className="py-16 sm:py-20 bg-gray-50 section-container" aria-labelledby="team-heading">

@@ -1,3 +1,4 @@
+
 export const esTranslations = {
   // Navigation
   'nav.home': 'Inicio',
@@ -6,10 +7,6 @@ export const esTranslations = {
   'nav.contact': 'Contacto',
   'nav.schedule': 'Agendar Consulta',
   'nav.faq': 'Preguntas Frecuentes',
-  'nav.projects': 'Proyectos',
-  'nav.projects.portfolio': 'Portafolio de Proyectos',
-  'nav.projects.tools': 'Herramientas y Calculadoras',
-  'nav.projects.blog': 'Blog y Perspectivas',
   
   // Home page
   'home.hero.title': 'La Arquitectura de',
@@ -239,30 +236,6 @@ export const esTranslations = {
   'projects.sales.client': 'Empresa Tecnológica Fortune 500',
   'projects.sales.sector': 'Tecnología',
   'projects.sales.summary': 'Automatizó pipeline de reportes de ventas que redujo el trabajo manual en 60% y mejoró la precisión de pronósticos en 25%.',
-  
-  // Blog translations
-  'blog.hero.title': 'Perspectivas y Recursos',
-  'blog.hero.subtitle': 'Últimos artículos y perspectivas sobre análisis de datos, inteligencia empresarial y transformación digital',
-  'blog.card.readMore': 'Leer Más',
-  'blog.card.publishedOn': 'Publicado el',
-  'blog.card.by': 'por',
-  'blog.post.backToBlog': 'Volver al Blog',
-  'blog.post.shareArticle': 'Compartir Artículo',
-  'blog.post.relatedPosts': 'Artículos Relacionados',
-  
-  // Tools translations
-  'tools.hero.title': 'Herramientas Interactivas',
-  'tools.hero.subtitle': 'Herramientas y calculadoras gratuitas para ayudarte a tomar decisiones basadas en datos',
-  'tools.card.category': 'Categoría',
-  'tools.card.getStarted': 'Comenzar',
-  'tools.card.comingSoon': 'Próximamente',
-  
-  // Featured Resources section
-  'featured.title': 'Recursos Destacados',
-  'featured.subtitle': 'Últimas herramientas y perspectivas para ayudar a transformar tu negocio',
-  'featured.viewAll': 'Ver Todo',
-  'featured.newBlogPost': 'Nuevo Artículo',
-  'featured.newTool': 'Nueva Herramienta',
   
   // FAQ page
   'faq.hero.title': 'Preguntas Frecuentes',
