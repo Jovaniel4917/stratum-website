@@ -1,10 +1,9 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { useFormSecurity } from "@/hooks/useFormSecurity";
-import { sanitizeInput, validateEmail, validateRequired } from "@/utils/security";
+import { sanitizeInput, validateEmail, validateRequired, validatePhoneNumber, logSecurityEvent } from "@/utils/security";
 import { MessageSquare, Send, Shield } from "lucide-react";
 import ContactFormFields from "./ContactFormFields";
 import SecurityCaptcha from "./SecurityCaptcha";
@@ -37,11 +36,15 @@ const ContactForm = () => {
 
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
+    
     if (!validateRequired(formData.name, 2)) {
       newErrors.name = "Name must be at least 2 characters long";
     }
     if (!validateEmail(formData.email)) {
       newErrors.email = "Please enter a valid email address";
+    }
+    if (formData.phone && !validatePhoneNumber(formData.phone)) {
+      newErrors.phone = "Please enter a valid phone number";
     }
     if (!validateRequired(formData.company, 2)) {
       newErrors.company = "Company name must be at least 2 characters long";
@@ -55,6 +58,7 @@ const ContactForm = () => {
     if (!validateRequired(formData.message, 10)) {
       newErrors.message = "Message must be at least 10 characters long";
     }
+    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -65,8 +69,15 @@ const ContactForm = () => {
     // Prevent double submission
     if (isSubmitting || isSubmissionThrottled) return;
 
+    // Log form submission attempt
+    logSecurityEvent('FORM_SUBMISSION_ATTEMPT', {
+      formType: 'contact',
+      hasHoneypot: honeypotValue !== ''
+    });
+
     // Validate form
     if (!validateForm()) {
+      logSecurityEvent('FORM_VALIDATION_FAILED', { errors: Object.keys(errors) });
       toast({
         title: "Validation Error",
         description: "Please fix the errors in the form",
@@ -78,6 +89,7 @@ const ContactForm = () => {
     // Security validation
     const securityCheck = validateSecurity();
     if (!securityCheck.isValid) {
+      logSecurityEvent('SECURITY_CHECK_FAILED', { reason: securityCheck.error });
       toast({
         title: "Security Check Failed",
         description: securityCheck.error,
@@ -89,7 +101,7 @@ const ContactForm = () => {
     setIsSubmitting(true);
     throttleSubmission();
 
-    // Sanitize inputs
+    // Sanitize inputs with enhanced security
     const sanitizedData = {
       name: sanitizeInput(formData.name),
       email: sanitizeInput(formData.email),
@@ -117,12 +129,14 @@ const ContactForm = () => {
           _subject: `Contact Form: ${sanitizedData.subject}`,
           _replyto: sanitizedData.email,
           _format: "plain",
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
+          securityCheck: 'passed'
         })
       });
 
       if (response.ok) {
         setIsSubmitted(true);
+        logSecurityEvent('FORM_SUBMISSION_SUCCESS', { formType: 'contact' });
         toast({
           title: t('contact.form.success.title'),
           description: t('contact.form.success.description')
@@ -144,6 +158,7 @@ const ContactForm = () => {
       }
     } catch (error) {
       console.error("Error submitting form:", error);
+      logSecurityEvent('FORM_SUBMISSION_ERROR', { error: error.message });
       toast({
         title: "Submission Failed",
         description: "Something went wrong. Please try again later.",
@@ -182,7 +197,7 @@ const ContactForm = () => {
         </p>
         <div className="flex items-center text-sm text-gray-500 mt-2">
           <Shield className="h-4 w-4 mr-1" />
-          {t('contact.form.security')}
+          {t('contact.form.security')} - Enhanced Protection Active
         </div>
       </CardHeader>
       <CardContent>

@@ -1,67 +1,76 @@
 
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { LanguageProvider } from "./contexts/LanguageContext";
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
-import { CookieConsent } from "./components/CookieConsent";
-import ScrollToTop from "./components/ScrollToTop";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Projects from "./pages/Projects";
-import ProjectDetail from "./pages/ProjectDetail";
-import Tools from "./pages/Tools";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import Contact from "./pages/Contact";
-import FAQ from "./pages/FAQ";
-import Privacy from "./pages/Privacy";
-import Sitemap from "./pages/Sitemap";
-import NotFound from "./pages/NotFound";
+import { LanguageProvider } from '@/contexts/LanguageContext';
+import { useSecurityMonitoring } from '@/hooks/useSecurityMonitoring';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import ScrollToTop from '@/components/ScrollToTop';
+import CookieConsent from '@/components/CookieConsent';
 
-const queryClient = new QueryClient();
+// Page imports
+import Home from '@/pages/Home';
+import About from '@/pages/About';
+import Services from '@/pages/Services';
+import Contact from '@/pages/Contact';
+import Projects from '@/pages/Projects';
+import ProjectDetail from '@/pages/ProjectDetail';
+import Blog from '@/pages/Blog';
+import BlogPost from '@/pages/BlogPost';
+import Tools from '@/pages/Tools';
+import FAQ from '@/pages/FAQ';
+import Privacy from '@/pages/Privacy';
+import Sitemap from '@/pages/Sitemap';
+import NotFound from '@/pages/NotFound';
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <LanguageProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ScrollToTop />
-          <div className="min-h-screen flex flex-col bg-white">
-            <Header />
-            <main className="flex-1">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/projects" element={<Projects />} />
-                <Route path="/projects/:slug" element={<ProjectDetail />} />
-                <Route path="/tools" element={<Tools />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:slug" element={<BlogPost />} />
-                {/* Legacy redirects for case-studies URLs */}
-                <Route path="/case-studies" element={<Projects />} />
-                <Route path="/case-studies/:slug" element={<ProjectDetail />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/faq" element={<FAQ />} />
-                <Route path="/privacy" element={<Privacy />} />
-                <Route path="/sitemap.xml" element={<Sitemap />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </main>
-            <Footer />
-            <CookieConsent />
-          </div>
-        </BrowserRouter>
-      </LanguageProvider>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+import './App.css';
+
+const AppContent = () => {
+  // Initialize security monitoring
+  useSecurityMonitoring();
+
+  return (
+    <div className="App min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:id" element={<ProjectDetail />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/tools" element={<Tools />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/sitemap" element={<Sitemap />} />
+          
+          {/* Legacy redirects */}
+          <Route path="/en" element={<Navigate to="/" replace />} />
+          <Route path="/es" element={<Navigate to="/" replace />} />
+          
+          {/* 404 page */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+      <Footer />
+      <ScrollToTop />
+      <CookieConsent />
+      <Toaster />
+    </div>
+  );
+};
+
+const App = () => {
+  return (
+    <LanguageProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </LanguageProvider>
+  );
+};
 
 export default App;
