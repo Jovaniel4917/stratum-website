@@ -1,13 +1,17 @@
-
 export const enTranslations = {
   // Navigation
-  'nav.home': 'Home',
-  'nav.about': 'About',
-  'nav.services': 'Services',
-  'nav.contact': 'Contact',
-  'nav.projects': 'Projects',
-  'nav.schedule': 'Schedule Free Consultation',
-  'nav.faq': 'FAQ',
+  nav: {
+    home: "Home",
+    about: "About",
+    services: "Services",
+    projects: "Projects",
+    portfolio: "Portfolio",
+    tools: "Tools", 
+    blog: "Blog",
+    faq: "FAQ",
+    contact: "Contact",
+    schedule: "Schedule Consultation"
+  },
   
   // Home page
   'home.hero.title': 'The Architecture of',
@@ -288,6 +292,33 @@ export const enTranslations = {
   'projects.sales.client': 'Fortune 500 Technology Company',
   'projects.sales.sector': 'Technology',
   'projects.sales.summary': 'Automated sales reporting pipeline that reduced manual work by 60% and improved forecast accuracy by 25%.',
+  
+  // Tools page
+  tools: {
+    hero: {
+      title: "Tools & Resources",
+      description: "Explore our collection of tools and resources designed to help you make better data-driven decisions."
+    },
+    cta: {
+      title: "Need a Custom Solution?",
+      description: "Our tools are just the beginning. Let's build something tailored specifically for your business needs.",
+      button: "Get Custom Solution"
+    }
+  },
+  
+  // Blog page
+  blog: {
+    hero: {
+      title: "Insights & Updates",
+      description: "Stay informed with the latest trends, best practices, and insights in data analytics and business intelligence."
+    },
+    readMore: "Read More",
+    readTime: "min read",
+    noArticles: {
+      title: "Coming Soon",
+      description: "We're preparing valuable content for you. Check back soon for the latest insights and updates."
+    }
+  },
   
   // Cookie Consent
   'cookie.title': 'We use cookies',

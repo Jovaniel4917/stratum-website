@@ -1,12 +1,17 @@
-
 export const esTranslations = {
   // Navigation
-  'nav.home': 'Inicio',
-  'nav.about': 'Nosotros',
-  'nav.services': 'Servicios',
-  'nav.contact': 'Contacto',
-  'nav.schedule': 'Agendar Consulta',
-  'nav.faq': 'Preguntas Frecuentes',
+  nav: {
+    home: "Inicio",
+    about: "Nosotros",
+    services: "Servicios",
+    projects: "Proyectos",
+    portfolio: "Portafolio",
+    tools: "Herramientas",
+    blog: "Blog", 
+    faq: "Preguntas",
+    contact: "Contacto",
+    schedule: "Agendar Consulta"
+  },
   
   // Home page
   'home.hero.title': 'La Arquitectura de',
@@ -325,4 +330,31 @@ export const esTranslations = {
   'privacy.compliance.description': 'No vendemos tus datos. Todos los procesos cumplen con GDPR, CCPA y otras leyes de privacidad aplicables.',
   'privacy.contact.title': 'Contáctanos:',
   'privacy.contact.description': 'Para más información, contáctanos en',
+  
+  // Tools page
+  tools: {
+    hero: {
+      title: "Herramientas y Recursos",
+      description: "Explora nuestra colección de herramientas y recursos diseñados para ayudarte a tomar mejores decisiones basadas en datos."
+    },
+    cta: {
+      title: "¿Necesitas una Solución Personalizada?",
+      description: "Nuestras herramientas son solo el comienzo. Construyamos algo diseñado específicamente para las necesidades de tu negocio.",
+      button: "Obtener Solución Personalizada"
+    }
+  },
+  
+  // Blog page
+  blog: {
+    hero: {
+      title: "Perspectivas y Actualizaciones", 
+      description: "Mantente informado con las últimas tendencias, mejores prácticas y perspectivas en analítica de datos e inteligencia de negocios."
+    },
+    readMore: "Leer Más",
+    readTime: "min de lectura",
+    noArticles: {
+      title: "Próximamente",
+      description: "Estamos preparando contenido valioso para ti. Regresa pronto para las últimas perspectivas y actualizaciones."
+    }
+  }
 };

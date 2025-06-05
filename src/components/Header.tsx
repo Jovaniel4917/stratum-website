@@ -1,7 +1,14 @@
+
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { LanguageToggle } from "./LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -20,8 +27,13 @@ export const Header = () => {
     name: t('nav.services'),
     href: '/services'
   }, {
-    name: t('projects.hero.title'),
-    href: '/projects'
+    name: t('nav.projects'),
+    href: '/projects',
+    dropdown: [
+      { name: t('nav.portfolio'), href: '/projects' },
+      { name: t('nav.tools'), href: '/tools' },
+      { name: t('nav.blog'), href: '/blog' }
+    ]
   }, {
     name: t('nav.faq'),
     href: '/faq'
@@ -30,7 +42,12 @@ export const Header = () => {
     href: '/contact'
   }];
   
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => {
+    if (path === '/projects') {
+      return location.pathname === '/projects' || location.pathname === '/tools' || location.pathname.startsWith('/blog');
+    }
+    return location.pathname === path;
+  };
   
   // Dynamic spacing based on language
   const navSpacing = language === 'es' ? 'space-x-4 xl:space-x-6' : 'space-x-6 xl:space-x-8';
@@ -47,21 +64,45 @@ export const Header = () => {
             <img src="/StratumPR_Logo4.svg" alt="Stratum Logo" className="h-10 w-auto" />
           </Link>
 
-
-          {/* Desktop Navigation - Show hamburger menu earlier for Spanish */}
+          {/* Desktop Navigation */}
           <nav className={`hidden ${language === 'es' ? 'xl:flex' : 'lg:flex'} items-center ${navSpacing}`}>
             {navigation.map(item => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`font-telegraf font-medium transition-colors duration-200 text-sm lg:text-base whitespace-nowrap ${
-                  isActive(item.href)
-                    ? 'text-primary border-b-2 border-primary pb-1'
-                    : 'text-gray-700 hover:text-primary'
-                }`}
-              >
-                {item.name}
-              </Link>
+              item.dropdown ? (
+                <DropdownMenu key={item.name}>
+                  <DropdownMenuTrigger className={`flex items-center gap-1 font-telegraf font-medium transition-colors duration-200 text-sm lg:text-base whitespace-nowrap ${
+                    isActive(item.href)
+                      ? 'text-primary border-b-2 border-primary pb-1'
+                      : 'text-gray-700 hover:text-primary'
+                  }`}>
+                    {item.name}
+                    <ChevronDown className="h-3 w-3" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-white border border-gray-200 shadow-lg">
+                    {item.dropdown.map(dropdownItem => (
+                      <DropdownMenuItem key={dropdownItem.name} asChild>
+                        <Link
+                          to={dropdownItem.href}
+                          className="font-telegraf text-gray-700 hover:text-primary hover:bg-gray-50 px-3 py-2 block w-full"
+                        >
+                          {dropdownItem.name}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`font-telegraf font-medium transition-colors duration-200 text-sm lg:text-base whitespace-nowrap ${
+                    isActive(item.href)
+                      ? 'text-primary border-b-2 border-primary pb-1'
+                      : 'text-gray-700 hover:text-primary'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
             <LanguageToggle />
             <Button asChild className="bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold px-4 lg:px-6 py-2 rounded-lg transition-all duration-200 hover:shadow-lg text-sm lg:text-base whitespace-nowrap">
@@ -71,7 +112,7 @@ export const Header = () => {
             </Button>
           </nav>
 
-          {/* Mobile menu button - Show earlier for Spanish */}
+          {/* Mobile menu button */}
           <button
             className={`${language === 'es' ? 'xl:hidden' : 'lg:hidden'} p-2 rounded-lg hover:bg-gray-100 transition-colors z-50 relative`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -95,27 +136,49 @@ export const Header = () => {
               aria-hidden="true"
             />
             
-            {/* Mobile Navigation Menu - positioned below the header */}
+            {/* Mobile Navigation Menu */}
             <div className={`${language === 'es' ? 'xl:hidden' : 'lg:hidden'} fixed top-0 left-0 right-0 z-45 bg-white shadow-xl animate-in slide-in-from-top duration-300`}>
-              {/* Header space to match main header height - keeps logo visible */}
               <div className={`${headerHeight} border-b border-gray-100`}></div>
               
-              {/* Navigation Content */}
               <div className="bg-white px-4 py-6 max-h-[calc(100vh-5rem)] overflow-y-auto">
                 <nav className="flex flex-col space-y-1">
                   {navigation.map(item => (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base ${
-                        isActive(item.href)
-                          ? 'text-primary bg-primary/10 border-l-4 border-primary'
-                          : 'text-gray-700 hover:text-primary hover:bg-gray-50'
-                      }`}
-                      onClick={closeMenu}
-                    >
-                      {item.name}
-                    </Link>
+                    item.dropdown ? (
+                      <div key={item.name}>
+                        <div className={`font-telegraf font-medium py-3 px-4 text-base ${
+                          isActive(item.href)
+                            ? 'text-primary bg-primary/10 border-l-4 border-primary'
+                            : 'text-gray-700'
+                        }`}>
+                          {item.name}
+                        </div>
+                        <div className="ml-4 space-y-1">
+                          {item.dropdown.map(dropdownItem => (
+                            <Link
+                              key={dropdownItem.name}
+                              to={dropdownItem.href}
+                              className="font-telegraf font-medium py-2 px-4 rounded-lg transition-all duration-200 text-sm text-gray-600 hover:text-primary hover:bg-gray-50 block"
+                              onClick={closeMenu}
+                            >
+                              {dropdownItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base ${
+                          isActive(item.href)
+                            ? 'text-primary bg-primary/10 border-l-4 border-primary'
+                            : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+                        }`}
+                        onClick={closeMenu}
+                      >
+                        {item.name}
+                      </Link>
+                    )
                   ))}
                   
                   {/* Language Toggle in Mobile Menu */}
