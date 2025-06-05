@@ -9,11 +9,6 @@ import { getRecentBlogPosts, getFeaturedBlogPosts } from "@/data/blogPosts";
 import { getRecentTools, getFeaturedTools } from "@/data/tools";
 import OptimizedImage from "@/components/OptimizedImage";
 import { format } from "date-fns";
-import type { BlogPost, Tool } from "@/types/content";
-
-type FeaturedBlogPost = BlogPost & { type: 'blog'; isRecent: boolean };
-type FeaturedTool = Tool & { type: 'tool'; isRecent: boolean };
-type FeaturedContent = FeaturedBlogPost | FeaturedTool;
 
 const FeaturedResources = () => {
   const { t, language } = useLanguage();
@@ -25,7 +20,7 @@ const FeaturedResources = () => {
   const featuredTools = getFeaturedTools();
 
   // Combine and limit to show the most relevant items
-  const featuredContent: FeaturedContent[] = [
+  const featuredContent = [
     ...recentPosts.slice(0, 2).map(post => ({ ...post, type: 'blog' as const, isRecent: true })),
     ...featuredPosts.filter(post => !recentPosts.includes(post)).slice(0, 1).map(post => ({ ...post, type: 'blog' as const, isRecent: false })),
     ...recentTools.slice(0, 2).map(tool => ({ ...tool, type: 'tool' as const, isRecent: true })),
@@ -42,22 +37,6 @@ const FeaturedResources = () => {
       return format(new Date(dateString), 'MMM d, yyyy');
     } catch (error) {
       return dateString;
-    }
-  };
-
-  const getItemUrl = (item: FeaturedContent) => {
-    if (item.type === 'blog') {
-      return `/blog/${item.slug}`;
-    } else {
-      return item.ctaUrl;
-    }
-  };
-
-  const getItemCTA = (item: FeaturedContent) => {
-    if (item.type === 'blog') {
-      return t('blog.card.readMore');
-    } else {
-      return item.ctaText[language];
     }
   };
 
@@ -127,8 +106,8 @@ const FeaturedResources = () => {
                     variant="outline"
                     className="w-full border-primary text-primary hover:bg-primary hover:text-white font-telegraf font-medium py-2 rounded-lg transition-all duration-300"
                   >
-                    <Link to={getItemUrl(item)}>
-                      {getItemCTA(item)}
+                    <Link to={item.type === 'blog' ? `/blog/${item.slug}` : (item.type === 'tool' && 'ctaUrl' in item ? item.ctaUrl : `/tools/${item.slug}`)}>
+                      {item.type === 'blog' ? t('blog.card.readMore') : (item.type === 'tool' && 'ctaText' in item ? item.ctaText[language] : t('tools.card.getStarted'))}
                     </Link>
                   </Button>
                 </div>

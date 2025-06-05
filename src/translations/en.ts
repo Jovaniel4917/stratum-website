@@ -1,4 +1,3 @@
-
 export const enTranslations = {
   'nav.home': 'Home',
   'nav.about': 'About',
@@ -101,6 +100,7 @@ export const enTranslations = {
   'featured.newTool': 'New Tool',
 
   // Navigation dropdown
+  'nav.projects': 'Projects',
   'nav.projects.portfolio': 'Project Portfolio',
   'nav.projects.tools': 'Tools & Calculators',
   'nav.projects.blog': 'Blog & Insights',
