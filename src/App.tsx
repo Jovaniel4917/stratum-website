@@ -1,12 +1,11 @@
-
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { useSecurityMonitoring } from '@/hooks/useSecurityMonitoring';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
-import CookieConsent from '@/components/CookieConsent';
+import { CookieConsent } from '@/components/CookieConsent';
 
 // Page imports
 import Home from '@/pages/Home';
