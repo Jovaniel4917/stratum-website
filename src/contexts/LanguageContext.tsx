@@ -1,7 +1,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { translations } from '@/translations';
-import type { Language, LanguageContextType } from '@/types/language';
+import type { Language, LanguageContextType, TranslationValue } from '@/types/language';
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
@@ -29,9 +29,20 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     localStorage.setItem('preferred-language', lang);
   };
 
-  // Simple translation function - uses the imported translations
+  // Enhanced translation function that supports nested objects
   const t = (key: string): string => {
-    return translations[language][key] || key;
+    const keys = key.split('.');
+    let value: TranslationValue = translations[language];
+    
+    for (const k of keys) {
+      if (typeof value === 'object' && value !== null && k in value) {
+        value = value[k];
+      } else {
+        return key; // Return the key if translation not found
+      }
+    }
+    
+    return typeof value === 'string' ? value : key;
   };
 
   return (
