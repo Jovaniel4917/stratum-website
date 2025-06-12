@@ -4,5 +4,8 @@
     { "source": "/en/", "destination": "/", "permanent": true },
     { "source": "/es", "destination": "/", "permanent": true },
     { "source": "/es/", "destination": "/", "permanent": true }
+  ],
+  "routes": [
+    { "src": "/.*", "dest": "/index.html" }
   ]
 }
