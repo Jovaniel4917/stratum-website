@@ -1,11 +1,24 @@
+// ============================================================================
+// SPANISH TRANSLATIONS FILE (ARCHIVO DE TRADUCCIONES EN ESPAÑOL)
+// ============================================================================
+// EDITAR ESTE ARCHIVO: Cambia cualquier texto del sitio web modificando los valores abajo
+// Cada clave corresponde a un elemento de texto en el sitio
+// Ejemplo: 'nav.home': 'Inicio' controla el enlace "Inicio" en la navegación
+// ============================================================================
+
 export const esTranslations: Record<string, string> = {
-  // Navigation
+  // ==========================================================================
+  // NAVEGACIÓN - Editar elementos del menú aquí
+  // ==========================================================================
   'nav.home': 'Inicio',
   'nav.about': 'Nosotros',
   'nav.services': 'Servicios',
-  'nav.projects': 'Proyectos',
-  'nav.projects': 'Proyectos',
   'nav.contact': 'Contacto',
+  'nav.projects': 'Proyectos',
+  'nav.resources': 'Recursos',
+  'nav.blog': 'Blog',
+  'nav.newsupdates': 'Noticias y Actualizaciones',
+  'nav.checklist': 'Evaluación de Sistemas',
   'nav.schedule': 'Agendar Consulta',
   'nav.faq': 'FAQ',
   
@@ -14,7 +27,7 @@ export const esTranslations: Record<string, string> = {
   'home.hero.subtitle': '',
   'home.hero.description': 'Con sede en Puerto Rico, Stratum construye y gestiona sistemas de datos inteligentes que reducen el trabajo manual y optimizan las operaciones sin necesidad de un equipo interno de tiempo completo.',
   'home.hero.cta.primary': 'Programar una Consulta Gratuita',
-  'home.hero.cta.secondary': 'Descargar la Lista de Verificación de Salud de Datos',
+  'home.hero.cta.secondary': 'Obtener Evaluación de Sistemas',
   
   // Problem Section
   'home.problem.title': '¿Estos Desafíos Te Están Reteniendo?',
@@ -35,12 +48,14 @@ export const esTranslations: Record<string, string> = {
   'home.guide.feature4': 'Optimización y automatización de flujos de trabajo',
   'home.guide.feature5': 'Entornos de datos centrados en el usuario construidos con requisitos de seguridad y cumplimiento en mente',
   'home.guide.conclusion': 'Liberamos a los equipos organizacionales de gestionar sistemas complejos, permitiéndoles enfocarse en lo que hacen mejor.',
+  'home.guide.moreAboutUs': 'Más sobre nosotros aquí.',
+  'home.guide.learnMoreServices': 'Más información sobre nuestros Servicios',
   
   // Plan Section
   'home.plan.title': 'Comenzar es simple:',
-  'home.plan.step1': 'Completa nuestra <strong>lista de verificación gratuita</strong> para identificar ineficiencias potenciales',
-  'home.plan.step2': 'Programa una <strong>consulta gratuita de 30 minutos</strong> para revisar necesidades y prioridades  ',
-  'home.plan.step3': 'Recibe un <strong>plan de solución personalizado</strong>, revisado hasta que sea la opción correcta.   ',
+  'home.plan.step1': 'Completa nuestra <strong><a href="/checklist" class="text-primary hover:underline">Evaluación de Sistemas gratuita</a></strong> para identificar ineficiencias potenciales.',
+  'home.plan.step2': 'Programa una <strong><a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">consulta gratuita de 30 minutos</a></strong> para revisar necesidades y prioridades.',
+  'home.plan.step3': 'Recibe un <strong>plan de solución personalizado</strong>, revisado hasta que sea la opción correcta.',
   
   // Two Paths Forward Section
   'home.twoPaths.title': 'Dos Caminos Hacia Adelante: ¿Cuál Elegirás?',
@@ -65,6 +80,7 @@ export const esTranslations: Record<string, string> = {
   
   // Final CTA Section
   'home.finalCta.title': 'Alcanza tu potencial con Stratum.',
+  'home.finalCta.description': '¿Listo para transformar tu negocio con perspectivas basadas en datos?',
   'home.finalCta.consultation': 'Programar una Consulta Gratuita',
   'home.finalCta.checklist': 'Descargar la Lista de Verificación de Salud de Datos',
   
@@ -379,21 +395,29 @@ export const esTranslations: Record<string, string> = {
   'privacy.contact.description': 'Para más detalles, contáctanos en',
   
   // Resources page
-  'resources.hero.title': 'Recursos y Herramientas',
-  'resources.hero.description': 'Accede a nuestra colección integral de guías, plantillas, documentos técnicos y kits de herramientas diseñados para ayudarte a aprovechar el análisis de datos de manera efectiva.',
+  'resources.hero.title': 'Recursos',
+  'resources.hero.description': 'Explora nuestros proyectos, mantente actualizado con noticias y perspectivas, y evalúa tus sistemas con nuestra Evaluación de Sistemas gratuita.',
   'resources.download': 'Descargar Recurso',
   'resources.visit': 'Visitar Recurso',
   'resources.cta.title': '¿Necesitas Recursos Personalizados?',
   'resources.cta.description': 'Nuestro equipo puede ayudarte a desarrollar soluciones y herramientas de análisis personalizadas para tus necesidades específicas.',
   'resources.cta.button': 'Agendar Consulta Gratuita',
   
-  // Blog page
-  'blog.hero.title': 'Perspectivas y Actualizaciones',
+  // Blog page (Noticias y Actualizaciones)
+  // EDITAR ESTA SECCIÓN: Cambiar título del blog, descripciones y texto de suscripción
+  'blog.hero.title': 'Noticias y Actualizaciones',
   'blog.hero.description': 'Mantente informado con las últimas tendencias, mejores prácticas y perspectivas expertas en análisis de datos, automatización de IA y transformación digital.',
   'blog.readmore': 'Leer Artículo',
   'blog.cta.title': '¿Tienes un Tema en Mente?',
   'blog.cta.description': 'Déjanos saber sobre qué te gustaría aprender más. Siempre buscamos crear contenido que ayude a nuestra comunidad.',
   'blog.cta.button': 'Contactar Nuestro Equipo',
+  'blog.subscribe.title': 'Mantente Actualizado',
+  // EDITAR ESTA LÍNEA: Cambiar texto de descripción de suscripción
+  'blog.subscribe.description': 'Suscríbete a nuestro blog para recibir los últimos artículos directamente en tu bandeja de entrada.',
+  'blog.subscribe.email.placeholder': 'Ingresa tu dirección de correo electrónico',
+  'blog.subscribe.button': 'Suscribirse',
+  'blog.subscribe.success': '¡Gracias por suscribirte! Recibirás nuestras últimas actualizaciones por correo electrónico.',
+  'blog.subscribe.error': 'Algo salió mal. Por favor, inténtalo de nuevo más tarde.',
   
   // Resources modal
   'resources.modal.downloadDescription': 'Descarga la plantilla completa para usar en tus proyectos',

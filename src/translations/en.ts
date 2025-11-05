@@ -1,10 +1,24 @@
+// ============================================================================
+// ENGLISH TRANSLATIONS FILE
+// ============================================================================
+// EDIT THIS FILE: Change any text on the website by modifying the values below
+// Each key corresponds to a text element on the site
+// Example: 'nav.home': 'Home' controls the "Home" link in navigation
+// ============================================================================
+
 export const enTranslations: Record<string, string> = {
-  // Navigation
+  // ==========================================================================
+  // NAVIGATION - Edit menu items here
+  // ==========================================================================
   'nav.home': 'Home',
   'nav.about': 'About',
   'nav.services': 'Services',
   'nav.contact': 'Contact',
   'nav.projects': 'Projects',
+  'nav.resources': 'Resources',
+  'nav.blog': 'Blog',
+  'nav.newsupdates': 'News & Updates',
+  'nav.checklist': 'Systems Assessment',
   'nav.schedule': 'Book Free Consultation',
   'nav.faq': 'FAQ',
   
@@ -13,7 +27,7 @@ export const enTranslations: Record<string, string> = {
   'home.hero.subtitle': '',
   'home.hero.description': 'Based in Puerto Rico, Stratum builds and manages intelligent data systems that reduce manual work and streamline operations without the need of a full-time internal team.',
   'home.hero.cta.primary': 'Book Free Consultation',
-  'home.hero.cta.secondary': 'Get System Fit Test',
+  'home.hero.cta.secondary': 'Get Systems Assessment',
 
   
   // Problem Section
@@ -35,12 +49,14 @@ export const enTranslations: Record<string, string> = {
   'home.guide.feature4': 'Workflow optimization and automation',
   'home.guide.feature5': 'User-centric data environments built with security and compliance requirements in mind',
   'home.guide.conclusion': 'We free up organizational teams from managing complex systems, allowing them to focus on what they do best.',
+  'home.guide.moreAboutUs': 'More about us here.',
+  'home.guide.learnMoreServices': 'Learn more about our Services',
   
   // Plan Section
   'home.plan.title': 'Getting started is simple:',
-  'home.plan.step1': 'Complete our <strong>free checklist</strong> to identify potential inefficiencies   ',
-  'home.plan.step2': 'Schedule a <strong>free 30-minute consultation</strong> to review needs and priorities',
-  'home.plan.step3': 'Receive a <strong>tailored solution plan</strong>, revised until it\'s the right fit.  ',
+  'home.plan.step1': 'Complete our <strong><a href="/checklist" class="text-primary hover:underline">free Systems Assessment</a></strong> to identify potential inefficiencies.',
+  'home.plan.step2': 'Schedule a <strong><a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">free 30-minute consultation</a></strong> to review needs and priorities.',
+  'home.plan.step3': 'Receive a <strong>tailored solution plan</strong>, revised until it\'s the right fit.',
   
   // Two Paths Forward Section
   'home.twoPaths.title': 'Two Paths Forward: Which Will You Choose?',
@@ -65,8 +81,9 @@ export const enTranslations: Record<string, string> = {
   
   // Final CTA Section
   'home.finalCta.title': 'Reach your potential with Stratum.',
+  'home.finalCta.description': 'Ready to transform your business with data-driven insights?',
   'home.finalCta.consultation': 'Book Free Consultation',
-  'home.finalCta.checklist': 'Get System Fit Test',
+  'home.finalCta.checklist': 'Get Systems Assessment',
   
   // Stats
   'stats.experience': 'Years of Experience',
@@ -379,21 +396,29 @@ export const enTranslations: Record<string, string> = {
   'privacy.contact.description': 'For more details, contact us at',
   
   // Resources page
-  'resources.hero.title': 'Resources & Tools',
-  'resources.hero.description': 'Access our comprehensive collection of guides, templates, whitepapers, and toolkits designed to help you leverage data analytics effectively.',
+  'resources.hero.title': 'Resources',
+  'resources.hero.description': 'Explore our projects, stay updated with news and insights, and assess your systems with our free Systems Assessment.',
   'resources.download': 'Download Resource',
   'resources.visit': 'Visit Resource',
   'resources.cta.title': 'Need Custom Resources?',
   'resources.cta.description': 'Our team can help you develop tailored analytics solutions and tools for your specific needs.',
   'resources.cta.button': 'Schedule Free Consultation',
   
-  // Blog page
-  'blog.hero.title': 'Insights & Updates',
+  // Blog page (News & Updates)
+  // EDIT THIS SECTION: Change blog title, descriptions, and subscription text
+  'blog.hero.title': 'News and Updates',
   'blog.hero.description': 'Stay informed with the latest trends, best practices, and expert insights in data analytics, AI automation, and digital transformation.',
   'blog.readmore': 'Read Article',
   'blog.cta.title': 'Have a Topic in Mind?',
   'blog.cta.description': 'Let us know what you\'d like to learn more about. We\'re always looking to create content that helps our community.',
   'blog.cta.button': 'Contact Our Team',
+  'blog.subscribe.title': 'Stay Updated',
+  // EDIT THIS LINE: Change subscription description text
+  'blog.subscribe.description': 'Subscribe to our blog to receive the latest articles directly in your inbox.',
+  'blog.subscribe.email.placeholder': 'Enter your email address',
+  'blog.subscribe.button': 'Subscribe',
+  'blog.subscribe.success': 'Thank you for subscribing! You\'ll receive our latest updates via email.',
+  'blog.subscribe.error': 'Something went wrong. Please try again later.',
   
   // Resources modal
   'resources.modal.downloadDescription': 'Download the complete template to use in your projects',
