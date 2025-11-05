@@ -1,20 +1,72 @@
-
-export const enTranslations = {
+export const enTranslations: Record<string, string> = {
   // Navigation
   'nav.home': 'Home',
   'nav.about': 'About',
   'nav.services': 'Services',
   'nav.contact': 'Contact',
   'nav.projects': 'Projects',
-  'nav.schedule': 'Schedule Free Consultation',
+  'nav.schedule': 'Book Free Consultation',
   'nav.faq': 'FAQ',
   
   // Home page
-  'home.hero.title': 'The Architecture of',
-  'home.hero.subtitle': 'Better Decisions',
-  'home.hero.description': 'We build the foundation for strategic excellence through advanced analytics, AI solutions, and data-driven consulting that transforms how businesses operate in Puerto Rico and beyond.',
-  'home.hero.cta.primary': 'Schedule Free Consultation',
-  'home.hero.cta.secondary': 'Explore Services',
+  'home.hero.title': 'Spend less time on admin, more time on growth',
+  'home.hero.subtitle': '',
+  'home.hero.description': 'Based in Puerto Rico, Stratum builds and manages intelligent data systems that reduce manual work and streamline operations without the need of a full-time internal team.',
+  'home.hero.cta.primary': 'Book Free Consultation',
+  'home.hero.cta.secondary': 'Get System Fit Test',
+
+  
+  // Problem Section
+  'home.problem.title': 'Are These Challenges Holding You Back?',
+  'home.problem.box1.title': 'Fragmented Data Across Systems',
+  'home.problem.box1.subtitle': 'Critical information is spread across spreadsheets, emails, and disconnected tools, slowing down decision-making.',
+  'home.problem.box2.title': 'Manual Work Is Slowing You Down',
+  'home.problem.box2.subtitle': 'Your team spends hours on reporting and admin tasks, with less time for results-driven work.',
+  'home.problem.box3.title': 'Gut-based Decision Making',
+  'home.problem.box3.subtitle': 'Without reliable numbers, decisions are based on incomplete information, increasing risk of mistakes.',
+  'home.problem.conclusion': 'Valuable time is being spent on tasks that systems could manage for you.',
+  
+  // Guide Section
+  'home.guide.description': 'Stratum PR brings together a team of data experts based in Puerto Rico, with backgrounds in analytics, research, systems design, and automation.',
+  'home.guide.weSpecialize': 'We specialize in:',
+  'home.guide.feature1': 'Custom reporting dashboards designed and maintained',
+  'home.guide.feature2': 'CRM and ERP implementation and optimization',
+  'home.guide.feature3': 'Secure and scalable data infrastructure',
+  'home.guide.feature4': 'Workflow optimization and automation',
+  'home.guide.feature5': 'User-centric data environments built with security and compliance requirements in mind',
+  'home.guide.conclusion': 'We free up organizational teams from managing complex systems, allowing them to focus on what they do best.',
+  
+  // Plan Section
+  'home.plan.title': 'Getting started is simple:',
+  'home.plan.step1': 'Complete our <strong>free checklist</strong> to identify potential inefficiencies   ',
+  'home.plan.step2': 'Schedule a <strong>free 30-minute consultation</strong> to review needs and priorities',
+  'home.plan.step3': 'Receive a <strong>tailored solution plan</strong>, revised until it\'s the right fit.  ',
+  
+  // Two Paths Forward Section
+  'home.twoPaths.title': 'Two Paths Forward: Which Will You Choose?',
+  'home.twoPaths.withoutAction.title': 'Without Action: The Cost of Standing Still',
+  'home.twoPaths.withoutAction.point1.title': 'Falling Behind Competitors',
+  'home.twoPaths.withoutAction.point1.description': 'While you manually process data, competitors gain market advantage with AI-driven insights',
+  'home.twoPaths.withoutAction.point2.title': 'Wasted Resources',
+  'home.twoPaths.withoutAction.point2.description': 'Your team burns 20+ hours weekly on manual tasks that could be automated',
+  'home.twoPaths.withoutAction.point3.title': 'Missed Opportunities',
+  'home.twoPaths.withoutAction.point3.description': 'Critical decisions made on incomplete information lead to costly mistakes',
+  'home.twoPaths.withoutAction.point4.title': 'Team Frustration',
+  'home.twoPaths.withoutAction.point4.description': 'Top talent leaves for organizations with modern, efficient systems',
+  'home.twoPaths.withStratum.title': 'With Stratum: Your Transformed Future',
+  'home.twoPaths.withStratum.point1.title': 'Lightning-Fast Decisions',
+  'home.twoPaths.withStratum.point1.description': 'Real-time dashboards give you instant visibility into what matters most',
+  'home.twoPaths.withStratum.point2.title': 'Strategic Advantage',
+  'home.twoPaths.withStratum.point2.description': 'Predictive analytics help you stay three steps ahead of market changes',
+  'home.twoPaths.withStratum.point3.title': 'Time Freedom',
+  'home.twoPaths.withStratum.point3.description': 'Your team focuses on high-value work while AI handles routine tasks',
+  'home.twoPaths.withStratum.point4.title': 'Industry Leadership',
+  'home.twoPaths.withStratum.point4.description': 'Become the organization others look to as the innovation benchmark',
+  
+  // Final CTA Section
+  'home.finalCta.title': 'Reach your potential with Stratum.',
+  'home.finalCta.consultation': 'Book Free Consultation',
+  'home.finalCta.checklist': 'Get System Fit Test',
   
   // Stats
   'stats.experience': 'Years of Experience',
@@ -44,7 +96,7 @@ export const enTranslations = {
   // CTA
   'cta.title': 'Ready to Transform Your Business?',
   'cta.description': 'Let\'s discuss how Stratum PR can architect better decisions for your organization through data analytics Puerto Rico expertise.',
-  'cta.button': 'Schedule Free Consultation',
+  'cta.button': 'Book Free Consultation',
   
   // Features
   'features.title': 'Strategic Solutions for Data Analytics Puerto Rico',
@@ -97,7 +149,7 @@ export const enTranslations = {
   // Services page
   'services.hero.title': 'Data Analytics Services Puerto Rico',
   'services.hero.description': 'We architect comprehensive solutions that transform complex data into strategic business advantages. Our services span the entire analytics ecosystem, from CRM implementation consulting to AI business automation.',
-  'services.hero.cta': 'Schedule Free Consultation',
+  'services.hero.cta': 'Book Free Consultation',
   'services.core.title': 'Our Core Services',
   'services.core.description': 'Each service is designed to deliver measurable business value while building the foundation for long-term strategic advantage.',
   'services.integration.title': 'Enterprise Software Integration',
@@ -160,7 +212,7 @@ export const enTranslations = {
   'services.process.step4.description': 'Comprehensive training programs and ongoing optimization ensure maximum value from your investment.',
   'services.cta.title': 'Ready to Get Started?',
   'services.cta.description': 'Let\'s discuss how our data analytics services can transform your business operations and drive strategic growth in Puerto Rico.',
-  'services.cta.consultation': 'Schedule Free Consultation',
+  'services.cta.consultation': 'Book Free Consultation',
   'services.cta.contact': 'Contact Our Team',
   'services.features': 'Key Features',
   
@@ -250,10 +302,10 @@ export const enTranslations = {
   // FAQ CTA
   'faq.cta.title': 'Still Have Questions?',
   'faq.cta.description': 'We\'re here to help. Schedule a free consultation to discuss your specific needs and how we can help transform your business.',
-  'faq.cta.button': 'Schedule Free Consultation',
+  'faq.cta.button': 'Book Free Consultation',
   
   // Footer
-  'footer.tagline': 'The Architecture of Better Decisions. We specialize in analytics and consulting solutions that drive strategic business outcomes.',
+  'footer.tagline': 'The Architecture of Better Decisions. Your strategic partner for business intelligence solutions in Puerto Rico.',
   'footer.quicklinks': 'Quick Links',
   'footer.contact': 'Contact',
   'footer.copyright': 'All rights reserved.',
@@ -271,7 +323,7 @@ export const enTranslations = {
   'projects.readmore': 'Read More',
   'projects.cta.title': 'Ready to Create Your Success Story?',
   'projects.cta.description': 'Let\'s discuss how we can help transform your data into actionable insights.',
-  'projects.cta.button': 'Schedule Free Consultation',
+  'projects.cta.button': 'Book Free Consultation',
   
   // Project examples
   'projects.healthcare.title': 'Healthcare Data Integration Platform',
@@ -325,4 +377,95 @@ export const enTranslations = {
   'privacy.compliance.description': 'We do not sell your data. All data processing aligns with GDPR, CCPA, and other applicable data protection laws.',
   'privacy.contact.title': 'Contact Us:',
   'privacy.contact.description': 'For more details, contact us at',
+  
+  // Resources page
+  'resources.hero.title': 'Resources & Tools',
+  'resources.hero.description': 'Access our comprehensive collection of guides, templates, whitepapers, and toolkits designed to help you leverage data analytics effectively.',
+  'resources.download': 'Download Resource',
+  'resources.visit': 'Visit Resource',
+  'resources.cta.title': 'Need Custom Resources?',
+  'resources.cta.description': 'Our team can help you develop tailored analytics solutions and tools for your specific needs.',
+  'resources.cta.button': 'Schedule Free Consultation',
+  
+  // Blog page
+  'blog.hero.title': 'Insights & Updates',
+  'blog.hero.description': 'Stay informed with the latest trends, best practices, and expert insights in data analytics, AI automation, and digital transformation.',
+  'blog.readmore': 'Read Article',
+  'blog.cta.title': 'Have a Topic in Mind?',
+  'blog.cta.description': 'Let us know what you\'d like to learn more about. We\'re always looking to create content that helps our community.',
+  'blog.cta.button': 'Contact Our Team',
+  
+  // Resources modal
+  'resources.modal.downloadDescription': 'Download the complete template to use in your projects',
+  'resources.downloadTemplate': 'Download Template',
+  'resources.visitExternal': 'Visit External Link',
+  'resources.viewPreview': 'View Preview',
+  'resources.modal.loading': 'Loading preview...',
+  'resources.modal.error': 'Preview not available',
+  'resources.modal.pdfNotSupported': 'PDF preview not supported in this browser',
+  'resources.modal.downloadPdf': 'Download PDF',
+  
+  // Privacy Policy Modal
+  'privacy.policy.title': 'Privacy Policy',
+  'privacy.policy.intro': 'At Stratum PR, we are committed to protecting the privacy of our users. This privacy policy outlines the types of personal information we collect, how we use and share it, and steps we take to protect it.',
+  'privacy.policy.types.title': 'Types of Information Collected:',
+  'privacy.policy.types.contact': 'Contact information, such as name, email, company, and phone number',
+  'privacy.policy.types.usage': 'Information related to usage of our services, such as usage patterns and preferences',
+  'privacy.policy.use.title': 'Use of Information:',
+  'privacy.policy.use.provide': 'To provide and improve our products and services',
+  'privacy.policy.use.communicate': 'To communicate with users regarding updates, promotions, and other information',
+  'privacy.policy.use.personalize': 'To personalize the user experience',
+  'privacy.policy.use.comply': 'To comply with legal requirements',
+  'privacy.policy.sharing.title': 'Sharing of Information:',
+  'privacy.policy.sharing.providers': 'We may share personal information with third-party service providers to assist us in providing our services',
+  'privacy.policy.sharing.legal': 'We may also disclose personal information if required by law or to protect our rights and the rights of others',
+  'privacy.policy.protection.title': 'Protection of Information:',
+  'privacy.policy.protection.measures': 'We implement appropriate technical and organizational measures to secure personal information from unauthorized access, use, disclosure, alteration, or destruction',
+  'privacy.policy.changes.title': 'Changes to the Privacy Policy:',
+  'privacy.policy.changes.updates': 'We may update this privacy policy from time to time to reflect changes in our practices or laws. We will notify users of any significant changes',
+  'privacy.policy.contact.title': 'Contact Us:',
+  'privacy.policy.contact.info': 'If you have any questions or concerns regarding our privacy policy, please contact us at',
+  
+  // Terms of Use Modal
+  'terms.title': 'Terms of Use',
+  'terms.intro': 'These terms and conditions and all other legal documents incorporated by reference (collectively, the "Terms") are a legal contract between "you" and Stratum PR LLC (collectively "Stratum PR," "we," "our," or "us") with respect to access to and use of our associated internet properties (including without limitation https://www.stratumpr.com/) as linked and offered by us, our subsidiaries and/or affiliated companies, and any software that we provide to you for download in your devices (each an "application") (all of these collectively, the "Site").',
+  'terms.important': 'IMPORTANT – PLEASE READ CAREFULLY – THESE TERMS GOVERN YOUR USE OF THIS SITE. BY ACCESSING, VIEWING, BROWSING, VISITING OR USING THIS SITE YOU ACCEPT AND AGREE TO BE BOUND, WITHOUT LIMITATION OR QUALIFICATION, BY THESE TERMS. IF YOU DO NOT ACCEPT ANY OF THESE TERMS, PLEASE DO NOT USE THIS SITE. STRATUM PR MAY, IN ITS SOLE DISCRETION, MODIFY OR REVISE THESE TERMS AT ANY TIME BY UPDATING THIS DOCUMENT. YOU ARE BOUND BY ANY SUCH MODIFICATION OR REVISION AND SHOULD THEREFORE VISIT THIS PAGE PERIODICALLY TO REVIEW THESE TERMS. IF ANY MODIFICATION IS NOT ACCEPTABLE TO YOU, YOUR SOLE REMEDY AND RECOURSE IS TO DISCONTINUE USE OF THIS SITE.',
+  'terms.authorized.title': 'Authorized Use',
+  'terms.authorized.content': 'Subject to these Terms, we authorize you to view and download the information and other materials at or through this Site only for your personal, non-commercial use, provided that you retain all copyright and other proprietary notices contained in the original materials on any copies of the materials. You may not, without the prior written permission of Stratum PR, "mirror" any material contained on this Site on any other server.',
+  'terms.authorized.additional': 'The Site may allow certain registered users to access additional services, which are subject to any additional terms applicable to such portal(s) or services and which are hereby incorporated by reference if you access and/or contract such additional services ("Additional Terms"). In the event of any conflict between these Terms and the Additional Terms, the Additional Terms will prevail.',
+  'terms.privacy.title': 'Privacy',
+  'terms.privacy.content': 'Personal information collected about you by this Site is treated in accordance with the Privacy Policy, which is hereby incorporated into these Terms by reference. If you do not agree to these Terms or the Privacy Policy, you must discontinue using this Site.',
+  'terms.ownership.title': 'Ownership',
+  'terms.ownership.content': 'You acknowledge and agree that the content displayed on or through this Site, including without limitation all information, data, text, software, photographs, graphics, video, or other materials (the "Content") is copyrighted by us or our licensors under United States of America and international copyright laws. The Content may not be copied, modified, reproduced, republished, posted, transmitted, sold, offered for sale, or redistributed in any way without our prior written permission.',
+  'terms.ownership.copyright': 'Our Copyright: © 2025 Stratum PR LLC. All rights reserved.',
+  'terms.ownership.trademarks': 'The Stratum PR logo and certain other words and logos displayed on this Site constitute trademarks, trade names, or service marks of Stratum PR or other entities. You are not authorized to use any such Marks without our prior written consent. Ownership of all such Marks and the goodwill associated therewith remains with us or our respective licensors.',
+  'terms.disclaimers.title': 'Disclaimers',
+  'terms.disclaimers.content': 'YOU EXPRESSLY AGREE THAT YOUR USE OF THIS SITE OR THE CONTENT SHALL BE AT YOUR SOLE DISCRETION AND RISK. THIS SITE AND THE CONTENT ARE PROVIDED ON AN "AS IS" AND "AS-AVAILABLE" BASIS WITHOUT ANY WARRANTIES OF ANY KIND. TO THE FULLEST EXTENT PERMITTED BY LAW, STRATUM PR DISCLAIMS ALL WARRANTIES, INCLUDING, BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT OF PROPRIETARY OR THIRD-PARTY RIGHTS, QUIET ENJOYMENT, SYSTEM INTEGRATION AND/OR DATA ACCURACY.',
+  'terms.liability.title': 'Limitation of Liability',
+  'terms.liability.content': 'IN NO EVENT SHALL STRATUM PR OR ITS AFFILIATES, EMPLOYEES, AGENTS OR LICENSORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES THAT RESULT FROM THE USE OF OR INABILITY TO USE THIS SITE OR THE CONTENT INCLUDING, BUT NOT LIMITED TO, RELIANCE BY A USER ON ANY INFORMATION OBTAINED AT THIS SITE.',
+  'terms.conduct.title': 'Prohibited Conduct',
+  'terms.conduct.intro': 'When using the Site you agree not to:',
+  'terms.conduct.item1': 'Defame, abuse, harass, stalk, threaten, or otherwise violate the legal rights of others',
+  'terms.conduct.item2': 'Use hateful, offensive, or explicit language',
+  'terms.conduct.item3': 'Discuss or incite illegal activity',
+  'terms.conduct.item4': 'Post anything that exploits minors or depicts cruelty',
+  'terms.conduct.item5': 'Post copyrighted/trademarked materials without permission',
+  'terms.conduct.item6': 'Disseminate spam or promotional material',
+  'terms.conduct.item7': 'Use automated tools to scrape the Site',
+  'terms.conduct.item8': 'Overload our infrastructure',
+  'terms.conduct.item9': 'Alter others\' posts',
+  'terms.conduct.item10': 'Post false or misleading content',
+  'terms.conduct.item11': 'Post unrelated or reputation-damaging content',
+  'terms.conduct.enforcement': 'This list is not exhaustive. Stratum PR reserves the right to terminate access or report violations to law enforcement.',
+  'terms.indemnity.title': 'Indemnity',
+  'terms.indemnity.content': 'To the extent permitted by law, you agree to defend, indemnify, and hold harmless Stratum PR, its officers, directors, employees, and agents from any claims or demands resulting from your use of the Site or breach of these Terms.',
+  'terms.links.title': 'Links to Other Sites',
+  'terms.links.content': 'This Site may link to third-party sites. Such sites have their own terms and policies, and Stratum PR is not responsible for their content, services, or any damage arising from their use. Any dealings with third parties through the Site are strictly between you and the third party.',
+  'terms.california.title': 'California Consumer Notice',
+  'terms.california.content': 'Under California Civil Code Section 1789.3, California users are entitled to the following notice: This Site is provided by Stratum PR LLC, 400 Calaf Street PMB #155, San Juan, Puerto Rico 00918. For complaints or questions, contact Customer Service at contact@stratumpr.com. California residents may contact the Division of Consumer Services at the California Department of Consumer Affairs via mail at 1625 North Market Blvd., Sacramento, CA 95834 or by phone at (916) 445-1254 or (800) 952-5210.',
+  'terms.general.title': 'General',
+  'terms.general.content': 'These Terms are governed by the laws of the Commonwealth of Puerto Rico. Disputes shall be submitted to confidential arbitration in Puerto Rico, except where we seek injunctive relief for IP violations. No class arbitration is permitted. If any provision is found unenforceable, it will be modified to reflect the intent and the rest shall remain in effect.',
+  'terms.contact.title': 'Contact Us',
+  'terms.contact.content': 'For questions about these Terms, contact us at',
+  'terms.copyright': '© 2025 Stratum PR, LLC',
 };

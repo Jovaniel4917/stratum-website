@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { ArrowRight, BarChart3, Brain, Database, Target, TrendingUp, Zap, Layers, Info } from "lucide-react";
+import { ArrowRight, BarChart3, Brain, Database, Target, TrendingUp, Zap, Layers, Info, Clock, HelpCircle, Server, AlertTriangle, XCircle, Network, Wifi, WifiOff, Link as LinkIcon, RotateCcw, Link2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -123,7 +123,7 @@ const Home = () => {
 
     return (
       <Card 
-        className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg h-full cursor-pointer"
+        className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg h-full "
         onClick={handleCardClick}
       >
         <CardContent className="p-6 sm:p-8 text-center h-full flex flex-col">
@@ -173,9 +173,10 @@ const Home = () => {
     <TooltipProvider>
       <div className="pt-20">
         {/* Hero Section - Optimized for FCP and LCP */}
-        <section className="hero-section relative bg-gradient-to-br from-primary via-primary-800 to-secondary flex items-center overflow-hidden section-container">
-          {/* Optimized background for better performance */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-primary/90 via-primary-700/85 to-secondary/90"></div>
+        <section className="hero-section relative flex items-center overflow-hidden h-[60vh]">
+          {/* Hero poster background image with dark overlay - cropped from top */}
+          <div className="absolute inset-0 bg-cover bg-center bg-top bg-no-repeat" style={{backgroundImage: 'url("/img/hero_poster.png")'}}></div>
+          <div className="absolute inset-0 bg-black/20"></div>
           
           {/* Optimized animation elements for mobile performance */}
           <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
@@ -187,25 +188,25 @@ const Home = () => {
           </div>
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white z-10">
-            <h1 className="font-telegraf font-bold text-4xl sm:text-5xl md:text-7xl mb-6 animate-fade-in">
+            <h1 className="font-telegraf font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 animate-fade-in" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.8)'}}>
               {t('home.hero.title')}
-              <span className="block text-accent mt-2">{t('home.hero.subtitle')}</span>
             </h1>
 
-            <p className="font-telegraf text-lg sm:text-xl md:text-2xl mb-8 text-primary-100 max-w-3xl mx-auto animate-slide-up">
+            <p className="font-telegraf text-lg sm:text-xl md:text-2xl mb-8 text-primary-100 max-w-4xl mx-auto animate-slide-up leading-relaxed" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.8)'}}>
               {t('home.hero.description')}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up" style={{animationDelay: '0.3s'}}>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-slide-up" style={{animationDelay: '0.3s'}}>
               <Button 
                 asChild 
                 size="lg" 
-                className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-sm sm:text-base" 
+                className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 sm:px-10 py-4 sm:py-5 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base sm:text-lg" 
                 aria-label="Schedule free consultation with Stratum PR data analytics experts"
+                style={{minHeight: '56px', minWidth: '200px'}}
               >
                 <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
-                  {t('nav.schedule')}
-                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
+                  {t('home.hero.cta.primary')}
+                  <ArrowRight className="ml-2 h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
                 </a>
               </Button>
 
@@ -213,108 +214,396 @@ const Home = () => {
                 asChild 
                 variant="outline" 
                 size="lg" 
-                className="bg-white text-black border-2 border-primary font-telegraf font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105 text-sm sm:text-base" 
-                aria-label="Explore Stratum PR data analytics and AI automation services"
+                className="bg-white text-black border-2 border-primary font-telegraf font-semibold px-8 sm:px-10 py-4 sm:py-5 rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105 text-base sm:text-lg" 
+                aria-label="Download the Data Health Checklist"
+                style={{minHeight: '56px', minWidth: '200px'}}
               >
-                <Link to="/services">
+                <a href="#" target="_blank" rel="noopener noreferrer">
                   {t('home.hero.cta.secondary')}
-                </Link>
+                </a>
               </Button>
             </div>
           </div>
         </section>
 
-        {/* Stats Section */}
-        <section className="py-12 sm:py-16 bg-gray-50 section-container" aria-labelledby="stats-heading">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 id="stats-heading" className="sr-only">Company Statistics and Achievements</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 items-center">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="font-telegraf font-bold text-3xl sm:text-4xl md:text-5xl text-primary mb-2">
-                    {stat.value}
+        {/* Problem Section */}
+        <section className="py-16 sm:py-20 bg-white section-container" aria-labelledby="problem-heading">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 id="problem-heading" className="font-telegraf font-bold text-2xl sm:text-3xl md:text-4xl text-primary mb-12 text-center">
+              {t('home.problem.title')}
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              {/* Fragmented Data Box */}
+              <div className="bg-white border-2 border-gray-200 rounded-lg p-6 hover:border-primary hover:shadow-lg transition-all duration-300 group ">
+                <div className="text-center">
+                  <div className="w-20 h-20 mx-auto mb-4 bg-red-200 rounded-full flex items-center justify-center group-hover:bg-red-300 transition-colors">
+                    <Database className="h-10 w-10 text-red-600" />
                   </div>
-                  <div className="font-telegraf text-gray-600 text-sm sm:text-base">
-                    {stat.label}
-                  </div>
+                  <h3 className="font-telegraf font-bold text-2xl text-gray-800 mb-4 min-h-[3rem] flex items-center justify-center">
+                    {t('home.problem.box1.title')}
+                  </h3>
+                  <p className="font-telegraf text-gray-600 leading-relaxed text-lg">
+                    {t('home.problem.box1.subtitle')}
+                  </p>
                 </div>
-              ))}
+              </div>
+
+              {/* Manual Work Box */}
+              <div className="bg-white border-2 border-gray-200 rounded-lg p-6 hover:border-primary hover:shadow-lg transition-all duration-300 group ">
+                <div className="text-center">
+                  <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center group-hover:from-orange-200 group-hover:to-orange-300 transition-colors">
+                    <Clock className="h-10 w-10 text-orange-600 group-hover:text-orange-700 stroke-2" />
+                  </div>
+                  <h3 className="font-telegraf font-bold text-2xl text-gray-800 mb-4 min-h-[3rem] flex items-center justify-center">
+                    {t('home.problem.box2.title')}
+                  </h3>
+                  <p className="font-telegraf text-gray-600 leading-relaxed text-lg">
+                    {t('home.problem.box2.subtitle')}
+                  </p>
+                </div>
+              </div>
+
+              {/* Gut-based Decisions Box */}
+              <div className="bg-white border-2 border-gray-200 rounded-lg p-6 hover:border-primary hover:shadow-lg transition-all duration-300 group ">
+                <div className="text-center">
+                  <div className="w-20 h-20 mx-auto mb-4 bg-yellow-200 rounded-full flex items-center justify-center group-hover:bg-yellow-300 transition-colors">
+                    <HelpCircle className="h-10 w-10 text-yellow-600" />
+                  </div>
+                  <h3 className="font-telegraf font-bold text-2xl text-gray-800 mb-4 min-h-[3rem] flex items-center justify-center">
+                    {t('home.problem.box3.title')}
+                  </h3>
+                  <p className="font-telegraf text-gray-600 leading-relaxed text-lg">
+                    {t('home.problem.box3.subtitle')}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Dark Blue Background Message */}
+            <div className="bg-primary text-white rounded-lg p-8 text-center">
+              <p className="font-telegraf text-xl sm:text-2xl font-semibold leading-relaxed">
+                {t('home.problem.conclusion')}
+              </p>
             </div>
           </div>
         </section>
 
-        {/* Services Grid Section */}
-        <section className="py-16 sm:py-20 section-container" aria-labelledby="services-heading">
+        {/* Guide Section */}
+        <section className="py-16 sm:py-20 bg-gray-50 section-container" aria-labelledby="guide-heading">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12 sm:mb-16">
-              <h2 id="services-heading" className="font-telegraf font-bold text-3xl sm:text-4xl md:text-5xl text-primary mb-6">
-                {t('services.grid.title')}
-              </h2>
-              <p className="font-telegraf text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                {t('services.grid.subtitle')}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Left Side - Text Content */}
+              <div className="space-y-12">
+                <div>
+                  <p className="font-telegraf text-4xl sm:text-5xl lg:text-6xl text-gray-800 leading-relaxed font-bold mb-8" style={{color: '#1E2B7E'}}>
+                    {t('home.guide.description')}
+                  </p>
+                  <p className="font-telegraf text-2xl sm:text-3xl text-gray-700 mb-8">
+                    <Link to="/about" className="text-primary hover:text-primary-600 underline hover:no-underline transition-colors duration-200 font-semibold">
+                      More about us here.
+                    </Link>
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                {/* Working Zoom Image */}
+                <div className="w-full h-96 rounded-2xl overflow-hidden shadow-2xl">
+                  <img 
+                    src="/img/working_zoom.jpeg" 
+                    alt="Technology & Innovation - Working Environment" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Right Side - Enhanced Services Grid */}
+              <div>
+                <h2 className="font-telegraf text-3xl sm:text-4xl text-gray-800 mb-12 font-bold text-center" style={{color: '#1E2B7E'}}>
+                  {t('home.guide.weSpecialize')}
+                </h2>
+                <div className="grid grid-cols-2 gap-6">
               {services.map((service, index) => (
-                <ServiceCardWithPopover key={index} service={service} />
-              ))}
+                    <Link key={index} to="/services" className="group">
+                      <Card className="h-full hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg bg-gradient-to-br from-white to-gray-50">
+                        <CardContent className="p-8 text-center h-full flex flex-col justify-center">
+                          <div className="flex justify-center mb-6">
+                            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[#E6E09E] to-[#266AB2] rounded-xl group-hover:from-[#266AB2] group-hover:to-[#1E2B7E] transition-all duration-300 shadow-lg">
+                              <service.icon className="h-10 w-10 text-white group-hover:text-white" aria-hidden="true" />
+                            </div>
+                          </div>
+                          <h3 className="font-telegraf font-bold text-2xl text-primary group-hover:text-secondary transition-colors">
+                            {service.title}
+                          </h3>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            {/* Conclusion Text */}
+            <div className="text-center mt-16">
+              <p className="font-telegraf text-3xl sm:text-4xl text-gray-600 italic mb-6 font-semibold">
+                {t('home.guide.conclusion')}
+              </p>
+              <Link to="/services" className="font-telegraf text-primary hover:text-primary-600 underline hover:no-underline transition-colors duration-200 text-2xl sm:text-3xl font-bold">
+                Learn more about our Services
+              </Link>
             </div>
           </div>
         </section>
 
-        {/* Meet Our Team Section */}
-        <section className="py-16 sm:py-20 bg-gray-50 section-container" aria-labelledby="team-heading">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 id="team-heading" className="font-telegraf font-bold text-3xl sm:text-4xl md:text-5xl text-primary mb-6">
-              {t('meetteam.title')}
+        {/* Plan Section */}
+        <section className="py-20 sm:py-28 bg-white section-container" aria-labelledby="plan-heading">
+          <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 id="plan-heading" className="font-telegraf font-bold text-4xl sm:text-5xl md:text-6xl text-primary mb-16 text-center whitespace-nowrap" style={{color: '#1E2B7E'}}>
+              {t('home.plan.title')}
             </h2>
-            <p className="font-telegraf text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed">
-              {t('meetteam.description')}
-            </p>
-            <Button 
-              asChild 
-              size="lg" 
-              className="bg-primary hover:bg-primary-700 text-white font-telegraf font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-sm sm:text-base" 
-              aria-label="Learn more about the Stratum PR team"
-            >
-              <Link to="/about">
-                {t('meetteam.button')}
-                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
-              </Link>
-            </Button>
+            <div className="flex flex-col items-center space-y-8">
+              <div className="flex items-center justify-center w-full max-w-7xl">
+                <span className="bg-gradient-to-br from-[#E6E09E] to-[#266AB2] text-white rounded-full w-12 h-12 flex items-center justify-center font-telegraf font-bold text-xl mr-6 flex-shrink-0 shadow-lg">1</span>
+                <p className="font-telegraf text-xl sm:text-2xl md:text-3xl text-gray-600 whitespace-nowrap" dangerouslySetInnerHTML={{ __html: t('home.plan.step1') }}>
+                </p>
+              </div>
+              <div className="flex items-center justify-center w-full max-w-7xl">
+                <span className="bg-gradient-to-br from-[#E6E09E] to-[#266AB2] text-white rounded-full w-12 h-12 flex items-center justify-center font-telegraf font-bold text-xl mr-6 flex-shrink-0 shadow-lg">2</span>
+                <p className="font-telegraf text-xl sm:text-2xl md:text-3xl text-gray-600 whitespace-nowrap" dangerouslySetInnerHTML={{ __html: t('home.plan.step2') }}>
+                </p>
+              </div>
+              <div className="flex items-center justify-center w-full max-w-7xl">
+                <span className="bg-gradient-to-br from-[#E6E09E] to-[#266AB2] text-white rounded-full w-12 h-12 flex items-center justify-center font-telegraf font-bold text-xl mr-6 flex-shrink-0 shadow-lg">3</span>
+                <p className="font-telegraf text-xl sm:text-2xl md:text-3xl text-gray-600 whitespace-nowrap" dangerouslySetInnerHTML={{ __html: t('home.plan.step3') }}>
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Lazy loaded sections with optimized loading */}
-        <Suspense fallback={
-          <div className="h-96 bg-gray-50 section-container flex items-center justify-center">
-            <div className="img-loading w-32 h-8 rounded"></div>
-          </div>
-        }>
-          <WhyWorkWithUsSection />
-        </Suspense>
-
-        {/* CTA Section */}
-        <section className="py-16 sm:py-20 bg-gradient-to-r from-primary to-secondary section-container" aria-labelledby="cta-heading">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <h2 id="cta-heading" className="font-telegraf font-bold text-3xl sm:text-4xl md:text-5xl mb-6">
-              {t('cta.title')}
+        {/* Two Paths Forward Section */}
+        <section className="py-32 sm:py-40 bg-gray-50 section-container" aria-labelledby="two-paths-heading">
+          <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 id="two-paths-heading" className="font-telegraf font-bold text-4xl sm:text-5xl md:text-6xl text-primary mb-24 text-center" style={{color: '#1E2B7E'}}>
+              {t('home.twoPaths.title')}
             </h2>
-            <p className="font-telegraf text-lg sm:text-xl mb-8 text-primary-100">
-              {t('cta.description')}
-            </p>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+              {/* Without Action Column */}
+              <div className="bg-white rounded-2xl p-16 shadow-2xl border-l-8" style={{borderLeftColor: '#B26E26'}}>
+                <div className="flex items-center mb-12">
+                  <AlertTriangle className="h-16 w-16 mr-8 stroke-2" style={{color: '#B26E26'}} />
+                  <h3 className="font-telegraf font-bold text-4xl" style={{color: '#B26E26'}}>
+                    {t('home.twoPaths.withoutAction.title')}
+                  </h3>
+                </div>
+                
+                <ul className="font-telegraf text-gray-600 space-y-8 text-2xl">
+                  <li className="flex items-start">
+                    <span className="mr-6 mt-3 text-3xl" style={{color: '#B26E26'}}>•</span>
+                    <div>
+                      <strong className="text-gray-800 text-3xl">{t('home.twoPaths.withoutAction.point1.title')}</strong> – <span className="text-2xl">{t('home.twoPaths.withoutAction.point1.description')}</span>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-6 mt-3 text-3xl" style={{color: '#B26E26'}}>•</span>
+                    <div>
+                      <strong className="text-gray-800 text-3xl">{t('home.twoPaths.withoutAction.point2.title')}</strong> – <span className="text-2xl">{t('home.twoPaths.withoutAction.point2.description')}</span>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-6 mt-3 text-3xl" style={{color: '#B26E26'}}>•</span>
+                    <div>
+                      <strong className="text-gray-800 text-3xl">{t('home.twoPaths.withoutAction.point3.title')}</strong> – <span className="text-2xl">{t('home.twoPaths.withoutAction.point3.description')}</span>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-6 mt-3 text-3xl" style={{color: '#B26E26'}}>•</span>
+                    <div>
+                      <strong className="text-gray-800 text-3xl">{t('home.twoPaths.withoutAction.point4.title')}</strong> – <span className="text-2xl">{t('home.twoPaths.withoutAction.point4.description')}</span>
+                    </div>
+                  </li>
+                </ul>
+                
+                {/* Visual: Dynamic Fragmented Systems - Below text */}
+                <div className="mt-12 flex justify-center">
+                  <div className="relative w-80 h-80">
+                    {/* Fragmented systems with pulsing animation */}
+                    <div className="absolute top-4 left-4 w-16 h-16 bg-red-200 rounded-lg flex items-center justify-center border-2 border-red-300 animate-pulse">
+                      <Database className="h-8 w-8 text-red-600 animate-bounce" />
+                    </div>
+                    <div className="absolute top-4 right-4 w-16 h-16 bg-red-200 rounded-lg flex items-center justify-center border-2 border-red-300 animate-pulse" style={{animationDelay: '0.5s'}}>
+                      <Server className="h-8 w-8 text-red-600 animate-bounce" />
+                    </div>
+                    <div className="absolute bottom-4 left-4 w-16 h-16 bg-red-200 rounded-lg flex items-center justify-center border-2 border-red-300 animate-pulse" style={{animationDelay: '1s'}}>
+                      <BarChart3 className="h-8 w-8 text-red-600 animate-bounce" />
+                    </div>
+                    <div className="absolute bottom-4 right-4 w-16 h-16 bg-red-200 rounded-lg flex items-center justify-center border-2 border-red-300 animate-pulse" style={{animationDelay: '1.5s'}}>
+                      <Network className="h-8 w-8 text-red-600 animate-bounce" />
+                    </div>
+                    
+                    {/* Central chaos indicator with rotation */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                      <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center animate-spin shadow-lg">
+                        <Clock className="h-6 w-6 text-white" />
+                      </div>
+                    </div>
+                    
+                    {/* Disconnected state with pulsing */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mt-12">
+                      <WifiOff className="h-8 w-8 text-red-500 animate-pulse" />
+                    </div>
+                    
+                    {/* Dynamic broken connection lines */}
+                    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 320 320">
+                      <line x1="80" y1="80" x2="140" y2="140" stroke="#ef4444" strokeWidth="3" strokeDasharray="12,8"/>
+                      <line x1="240" y1="80" x2="180" y2="140" stroke="#ef4444" strokeWidth="3" strokeDasharray="12,8"/>
+                      <line x1="80" y1="240" x2="140" y2="180" stroke="#ef4444" strokeWidth="3" strokeDasharray="12,8"/>
+                      <line x1="240" y1="240" x2="180" y2="180" stroke="#ef4444" strokeWidth="3" strokeDasharray="12,8"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              {/* With Stratum Column */}
+              <div className="bg-white rounded-2xl p-16 shadow-2xl border-l-8" style={{borderLeftColor: '#266AB2'}}>
+                <div className="flex items-center mb-12">
+                  <TrendingUp className="h-16 w-16 mr-8 stroke-2" style={{color: '#266AB2'}} />
+                  <h3 className="font-telegraf font-bold text-4xl" style={{color: '#266AB2'}}>
+                    {t('home.twoPaths.withStratum.title')}
+                  </h3>
+                </div>
+                
+                <ul className="font-telegraf text-gray-600 space-y-8 text-2xl">
+                  <li className="flex items-start">
+                    <span className="mr-6 mt-3 text-3xl" style={{color: '#266AB2'}}>•</span>
+                    <div>
+                      <strong className="text-gray-800 text-3xl">{t('home.twoPaths.withStratum.point1.title')}</strong> – <span className="text-2xl">{t('home.twoPaths.withStratum.point1.description')}</span>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-6 mt-3 text-3xl" style={{color: '#266AB2'}}>•</span>
+                    <div>
+                      <strong className="text-gray-800 text-3xl">{t('home.twoPaths.withStratum.point2.title')}</strong> – <span className="text-2xl">{t('home.twoPaths.withStratum.point2.description')}</span>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-6 mt-3 text-3xl" style={{color: '#266AB2'}}>•</span>
+                    <div>
+                      <strong className="text-gray-800 text-3xl">{t('home.twoPaths.withStratum.point3.title')}</strong> – <span className="text-2xl">{t('home.twoPaths.withStratum.point3.description')}</span>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-6 mt-3 text-3xl" style={{color: '#266AB2'}}>•</span>
+                    <div>
+                      <strong className="text-gray-800 text-3xl">{t('home.twoPaths.withStratum.point4.title')}</strong> – <span className="text-2xl">{t('home.twoPaths.withStratum.point4.description')}</span>
+                    </div>
+                  </li>
+                </ul>
+                
+                {/* Visual: Dynamic Connected Systems Network - Below text */}
+                <div className="mt-12 flex justify-center">
+                  <div className="relative w-80 h-80">
+                    {/* Central AI hub - opaque and static */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-gradient-to-br from-blue-600 to-purple-700 rounded-full flex items-center justify-center z-10 shadow-2xl">
+                      <Brain className="h-10 w-10 text-white" />
+                    </div>
+                    
+                    {/* Connected systems with dynamic animations */}
+                    <div className="absolute top-4 left-4 w-16 h-16 bg-green-200 rounded-lg flex items-center justify-center border-2 border-green-400 shadow-lg">
+                      <Database className="h-8 w-8 text-green-600" />
+                    </div>
+                    <div className="absolute top-4 right-4 w-16 h-16 bg-green-200 rounded-lg flex items-center justify-center border-2 border-green-400 shadow-lg">
+                      <Server className="h-8 w-8 text-green-600" />
+                    </div>
+                    <div className="absolute bottom-4 left-4 w-16 h-16 bg-green-200 rounded-lg flex items-center justify-center border-2 border-green-400 shadow-lg">
+                      <BarChart3 className="h-8 w-8 text-green-600" />
+                    </div>
+                    <div className="absolute bottom-4 right-4 w-16 h-16 bg-green-200 rounded-lg flex items-center justify-center border-2 border-green-400 shadow-lg">
+                      <Network className="h-8 w-8 text-green-600" />
+                    </div>
+                    
+                    {/* WiFi connectivity with pulsing */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mt-16">
+                      <Wifi className="h-8 w-8 text-green-500 animate-pulse" />
+                    </div>
+                    
+                    {/* Speed indicators with zap animation */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -mt-16">
+                      <svg className="h-8 w-8 text-yellow-500 animate-bounce" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                      </svg>
+                    </div>
+                    
+                    {/* Dynamic connection lines with flowing data */}
+                    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 320 320">
+                      <line x1="80" y1="80" x2="140" y2="140" stroke="#10b981" strokeWidth="4">
+                        <animate attributeName="stroke-width" values="4;6;4" dur="2s" repeatCount="indefinite"/>
+                      </line>
+                      <line x1="240" y1="80" x2="180" y2="140" stroke="#10b981" strokeWidth="4">
+                        <animate attributeName="stroke-width" values="4;6;4" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+                      </line>
+                      <line x1="80" y1="240" x2="140" y2="180" stroke="#10b981" strokeWidth="4">
+                        <animate attributeName="stroke-width" values="4;6;4" dur="2s" repeatCount="indefinite" begin="1s"/>
+                      </line>
+                      <line x1="240" y1="240" x2="180" y2="180" stroke="#10b981" strokeWidth="4">
+                        <animate attributeName="stroke-width" values="4;6;4" dur="2s" repeatCount="indefinite" begin="1.5s"/>
+                      </line>
+                      
+                      {/* Enhanced data flow indicators */}
+                      <circle cx="120" cy="120" r="3" fill="#10b981">
+                        <animate attributeName="r" values="3;6;3" dur="1.5s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite"/>
+                      </circle>
+                      <circle cx="200" cy="120" r="3" fill="#10b981">
+                        <animate attributeName="r" values="3;6;3" dur="1.5s" repeatCount="indefinite" begin="0.3s"/>
+                        <animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.3s"/>
+                      </circle>
+                      <circle cx="120" cy="200" r="3" fill="#10b981">
+                        <animate attributeName="r" values="3;6;3" dur="1.5s" repeatCount="indefinite" begin="0.6s"/>
+                        <animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.6s"/>
+                      </circle>
+                      <circle cx="200" cy="200" r="3" fill="#10b981">
+                        <animate attributeName="r" values="3;6;3" dur="1.5s" repeatCount="indefinite" begin="0.9s"/>
+                        <animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.9s"/>
+                      </circle>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA Section */}
+        <section className="py-16 sm:py-20 bg-gradient-to-r from-primary to-secondary section-container" aria-labelledby="final-cta-heading">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <h2 id="final-cta-heading" className="font-telegraf font-bold text-3xl sm:text-4xl md:text-5xl mb-8">
+              {t('home.finalCta.title')}
+            </h2>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
               asChild 
               size="lg" 
               className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-sm sm:text-base" 
-              aria-label="Get started with Stratum PR data analytics and AI consulting services today"
+                aria-label="Schedule free consultation with Stratum PR"
             >
               <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
-                {t('cta.button')}
-                <TrendingUp className="ml-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
+                  {t('home.finalCta.consultation')}
+                </a>
+              </Button>
+
+              <Button 
+                asChild 
+                variant="outline" 
+                size="lg" 
+                className="bg-white text-black border-2 border-white font-telegraf font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105 text-sm sm:text-base" 
+                aria-label="Download the Data Health Checklist"
+              >
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  {t('home.finalCta.checklist')}
               </a>
             </Button>
+            </div>
           </div>
         </section>
       </div>
