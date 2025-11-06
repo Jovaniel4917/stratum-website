@@ -195,10 +195,10 @@ export const Header = () => {
             <div id="mobile-menu" className={`xl:hidden fixed top-0 left-0 right-0 z-50 bg-primary shadow-xl animate-in slide-in-from-top duration-300`}>
               {/* Header with horizontal Stratum logo and close button - matches main header height */}
               <div className="h-14 md:h-16 border-b border-primary/20 flex items-center justify-between px-4 sm:px-5 md:px-6 lg:px-8">
-                {/* Horizontal Stratum Logo - using Logo 2.png from img directory */}
+                {/* Horizontal Stratum Logo - using Logo 2.svg from img directory */}
                 <Link to="/" className="flex items-center space-x-2 sm:space-x-2.5 md:space-x-3" onClick={closeMenu}>
                   <img 
-                    src="/img/Logo 2.png" 
+                    src="/img/Logo 2.svg" 
                     alt="Stratum Logo" 
                     className="h-6 sm:h-6 md:h-7 w-auto" 
                   />
