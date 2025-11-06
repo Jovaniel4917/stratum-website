@@ -34,11 +34,9 @@ export default defineConfig(({ mode }) => ({
         drop_console: mode === 'production',
         drop_debugger: mode === 'production',
       },
+      mangle: false, // Disable mangling to preserve constructor names (fixes Sanity client issue)
       format: {
         comments: false,
-        // Preserve class names and function names to prevent constructor issues
-        keep_classnames: true,
-        keep_fnames: true,
       },
     },
     // Enable code splitting for better mobile performance
