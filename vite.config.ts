@@ -26,23 +26,28 @@ export default defineConfig(({ mode }) => ({
   build: {
     // Optimize for mobile performance
     target: 'es2015',
-    // Use esbuild for faster builds (built-in, no extra dependency needed)
-    minify: 'esbuild',
-    // Keep console.error and console.warn for debugging, only remove console.log
-    esbuild: {
-      drop: mode === 'production' ? ['console'] : [],
-      legalComments: 'none',
-      // Preserve class names and constructor names for libraries like Sanity
-      keepNames: true,
+    // Use terser for minification to preserve constructor names (fixes Sanity client issue)
+    // Terser has better support for preserving class/function names
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: mode === 'production',
+        drop_debugger: mode === 'production',
+      },
+      format: {
+        comments: false,
+        // Preserve class names and function names to prevent constructor issues
+        keep_classnames: true,
+        keep_fnames: true,
+      },
     },
     // Enable code splitting for better mobile performance
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Sanity-related chunks - keep together to avoid minification issues
-          // Only split if it's the studio/vision which is rarely used
+          // Sanity-related chunks - keep client and image-url together to avoid constructor issues
           if (id.includes('sanity') || id.includes('@sanity')) {
-            // Keep @sanity/client and related together to avoid constructor issues
+            // Keep @sanity/client and @sanity/image-url together to avoid constructor issues
             if (id.includes('@sanity/client') || id.includes('@sanity/image-url')) {
               return 'sanity-client';
             }
