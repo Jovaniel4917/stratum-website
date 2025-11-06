@@ -35,7 +35,11 @@ export default defineConfig(({ mode }) => ({
         drop_console: false, // Don't drop console - we need it for debugging
         drop_debugger: mode === 'production',
       },
-      mangle: false, // Disable mangling to preserve constructor names (fixes Sanity client issue)
+      mangle: {
+        // Preserve class names and function names to prevent constructor issues
+        keep_classnames: true,
+        keep_fnames: true,
+      },
       format: {
         comments: false,
       },
