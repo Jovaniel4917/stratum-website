@@ -28,26 +28,32 @@ export default defineConfig(({ mode }) => ({
     target: 'es2015',
     // Use esbuild for faster builds (built-in, no extra dependency needed)
     minify: 'esbuild',
-    // Remove console.logs in production build
+    // Keep console.error and console.warn for debugging, only remove console.log
     esbuild: {
-      drop: mode === 'production' ? ['console', 'debugger'] : [],
+      drop: mode === 'production' ? ['console'] : [],
       legalComments: 'none',
+      // Preserve class names and constructor names for libraries like Sanity
+      keepNames: true,
     },
     // Enable code splitting for better mobile performance
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Sanity-related chunks (very large, separate them)
+          // Sanity-related chunks - keep together to avoid minification issues
+          // Only split if it's the studio/vision which is rarely used
           if (id.includes('sanity') || id.includes('@sanity')) {
+            // Keep @sanity/client and related together to avoid constructor issues
+            if (id.includes('@sanity/client') || id.includes('@sanity/image-url')) {
+              return 'sanity-client';
+            }
+            // Studio and vision can be separate as they're rarely loaded
             if (id.includes('sanity.config') || id.includes('sanity.config.ts')) {
               return 'sanity-config';
             }
             if (id.includes('@sanity/vision') || id.includes('SanityVision')) {
               return 'sanity-vision';
             }
-            if (id.includes('@sanity/client') || id.includes('sanity/client')) {
-              return 'sanity-client';
-            }
+            // Other Sanity packages together
             return 'sanity-vendor';
           }
           

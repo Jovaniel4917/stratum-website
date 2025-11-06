@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 interface ErrorBoundaryState {
   hasError: boolean;
@@ -46,26 +45,33 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
 }
 
 const DefaultErrorFallback: React.FC<{ error?: Error; resetError: () => void }> = ({ error, resetError }) => {
-  const { t } = useLanguage();
+  // Don't use useLanguage here - it might fail if LanguageProvider errored
+  // Use hardcoded text to ensure error boundary always works
   
   return (
-    <div className="min-h-[400px] flex items-center justify-center p-8">
+    <div className="min-h-screen flex items-center justify-center p-8 bg-white">
       <div className="text-center max-w-md">
         <h2 className="font-telegraf font-bold text-2xl text-primary mb-4">
-          {t('common.error')}
+          Something went wrong
         </h2>
         <p className="font-telegraf text-gray-600 mb-6">
-          Something went wrong. Please try again or contact support if the problem persists.
+          The application encountered an error. Please try again or contact support if the problem persists.
         </p>
         {error && (
           <details className="text-left mb-4 p-4 bg-gray-50 rounded border text-sm">
             <summary className="cursor-pointer font-semibold">Error Details</summary>
-            <pre className="mt-2 text-xs overflow-auto">{error.message}</pre>
+            <pre className="mt-2 text-xs overflow-auto whitespace-pre-wrap">{error.message}</pre>
+            {error.stack && (
+              <pre className="mt-2 text-xs overflow-auto whitespace-pre-wrap opacity-75 max-h-48">{error.stack}</pre>
+            )}
           </details>
         )}
         <Button onClick={resetError} className="font-telegraf">
           Try Again
         </Button>
+        <p className="mt-4 text-sm text-gray-500">
+          If this persists, please check the browser console (F12) for more details.
+        </p>
       </div>
     </div>
   );
