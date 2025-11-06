@@ -34,11 +34,13 @@ export default defineConfig(({ mode }) => ({
         drop_console: mode === 'production',
         drop_debugger: mode === 'production',
       },
-      format: {
-        comments: false,
+      mangle: {
         // Preserve class names and function names to prevent constructor issues
         keep_classnames: true,
         keep_fnames: true,
+      },
+      format: {
+        comments: false,
       },
     },
     // Enable code splitting for better mobile performance
