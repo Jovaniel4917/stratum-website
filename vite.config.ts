@@ -26,28 +26,39 @@ export default defineConfig(({ mode }) => ({
   build: {
     // Optimize for mobile performance
     target: 'es2015',
-    // Use esbuild for faster builds (built-in, no extra dependency needed)
-    minify: 'esbuild',
-    // Remove console.logs in production build
-    esbuild: {
-      drop: mode === 'production' ? ['console', 'debugger'] : [],
-      legalComments: 'none',
+    // Use terser for minification to preserve constructor names (fixes Sanity client issue)
+    // Terser has better support for preserving class/function names
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: mode === 'production',
+        drop_debugger: mode === 'production',
+      },
+      format: {
+        comments: false,
+        // Preserve class names and function names to prevent constructor issues
+        keep_classnames: true,
+        keep_fnames: true,
+      },
     },
     // Enable code splitting for better mobile performance
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Sanity-related chunks (very large, separate them)
+          // Sanity-related chunks - keep client and image-url together to avoid constructor issues
           if (id.includes('sanity') || id.includes('@sanity')) {
+            // Keep @sanity/client and @sanity/image-url together to avoid constructor issues
+            if (id.includes('@sanity/client') || id.includes('@sanity/image-url')) {
+              return 'sanity-client';
+            }
+            // Studio and vision can be separate as they're rarely loaded
             if (id.includes('sanity.config') || id.includes('sanity.config.ts')) {
               return 'sanity-config';
             }
             if (id.includes('@sanity/vision') || id.includes('SanityVision')) {
               return 'sanity-vision';
             }
-            if (id.includes('@sanity/client') || id.includes('sanity/client')) {
-              return 'sanity-client';
-            }
+            // Other Sanity packages together
             return 'sanity-vendor';
           }
           
