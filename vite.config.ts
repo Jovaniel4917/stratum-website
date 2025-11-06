@@ -31,7 +31,8 @@ export default defineConfig(({ mode }) => ({
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: mode === 'production',
+        // Keep console.error and console.warn for debugging in production
+        drop_console: false, // Don't drop console - we need it for debugging
         drop_debugger: mode === 'production',
       },
       mangle: false, // Disable mangling to preserve constructor names (fixes Sanity client issue)
@@ -119,9 +120,10 @@ export default defineConfig(({ mode }) => ({
         },
       },
     },
-    // Optimize chunk size warnings - set to 600KB since we disabled mangling (names are preserved)
-    // Manual chunking is already configured, so this is acceptable
-    chunkSizeWarningLimit: 600,
+    // Optimize chunk size warnings - set to 800KB since we disabled mangling (names are preserved)
+    // Manual chunking is already configured, and larger chunks are acceptable for reliability
+    // The sanity-client chunk may be large but needs to stay together to avoid constructor issues
+    chunkSizeWarningLimit: 800,
     // Enable CSS code splitting
     cssCodeSplit: true,
     // Source maps for production debugging (optional, can disable for smaller builds)
