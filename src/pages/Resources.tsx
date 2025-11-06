@@ -81,6 +81,9 @@ const Resources = () => {
                         src={resource.image} 
                         alt={resource.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                        decoding="async"
+                        fetchPriority="auto"
                         onError={(e) => {
                           // Fallback to a placeholder if image doesn't exist
                           (e.target as HTMLImageElement).src = '/img/topographic-linear-background.jpg';

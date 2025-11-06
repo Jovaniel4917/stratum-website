@@ -1,8 +1,7 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Linkedin, Mail } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface TeamMember {
@@ -22,9 +21,43 @@ interface TeamMemberCardProps {
 
 const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
   const { t } = useLanguage();
+  const [isExpanded, setIsExpanded] = useState(false);
+  
+  // Check if bio text is long enough to need expansion
+  const needsExpansion = founder.bio.length > 120; // Approximate character count for 3 lines
+  
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Don't expand if clicking on social links or buttons
+    const target = e.target as HTMLElement;
+    if (target.closest('a') || target.closest('button')) {
+      return;
+    }
+    if (needsExpansion) {
+      setIsExpanded(!isExpanded);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      if (needsExpansion) {
+        setIsExpanded(!isExpanded);
+      }
+    }
+  };
   
   return (
-    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden w-full max-w-[280px]">
+    <Card 
+      className={`group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden w-full max-w-[280px] ${
+        needsExpansion ? 'cursor-pointer' : ''
+      } ${isExpanded ? 'shadow-2xl' : ''}`}
+      onClick={handleCardClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={needsExpansion ? 0 : -1}
+      role={needsExpansion ? 'button' : undefined}
+      aria-expanded={needsExpansion ? isExpanded : undefined}
+      aria-label={needsExpansion ? `Click to ${isExpanded ? 'collapse' : 'expand'} ${founder.name}'s bio` : undefined}
+    >
       <div className="h-64 bg-white overflow-hidden">
         {founder.image ? (
           <img
@@ -47,9 +80,35 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
         <p className="font-telegraf font-semibold text-xs text-secondary mb-2">
           {founder.role}
         </p>
-        <p className="font-telegraf text-xs text-gray-600 mb-3 leading-relaxed line-clamp-3">
-          {founder.bio}
-        </p>
+        <div className="mb-3">
+          <p className={`font-telegraf text-xs text-gray-600 leading-relaxed ${
+            isExpanded ? '' : 'line-clamp-3'
+          }`}>
+            {founder.bio}
+          </p>
+          {needsExpansion && (
+            <button
+              className="mt-2 flex items-center gap-1 text-primary hover:text-primary-800 font-telegraf font-semibold text-xs transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsExpanded(!isExpanded);
+              }}
+              aria-label={isExpanded ? 'Show less' : 'Show more'}
+            >
+              {isExpanded ? (
+                <>
+                  <span>{t('about.team.showLess')}</span>
+                  <ChevronUp className="h-3 w-3" />
+                </>
+              ) : (
+                <>
+                  <span>{t('about.team.showMore')}</span>
+                  <ChevronDown className="h-3 w-3" />
+                </>
+              )}
+            </button>
+          )}
+        </div>
         
         <div>
           <h4 className="font-telegraf font-semibold text-xs text-gray-800 mb-1.5">

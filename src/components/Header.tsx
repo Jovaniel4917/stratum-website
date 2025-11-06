@@ -191,13 +191,32 @@ export const Header = () => {
               aria-hidden="true"
             />
             
-            {/* Mobile/Tablet Navigation Menu - positioned below the header */}
-            <div id="mobile-menu" className={`xl:hidden fixed top-0 left-0 right-0 z-50 bg-white shadow-xl animate-in slide-in-from-top duration-300`}>
-              {/* Header space to match main header height - keeps logo visible */}
-              <div className="h-14 md:h-16 border-b border-gray-100"></div>
+            {/* Mobile/Tablet Navigation Menu - Blue background when opened */}
+            <div id="mobile-menu" className={`xl:hidden fixed top-0 left-0 right-0 z-50 bg-primary shadow-xl animate-in slide-in-from-top duration-300`}>
+              {/* Header with horizontal Stratum logo and close button - matches main header height */}
+              <div className="h-14 md:h-16 border-b border-primary/20 flex items-center justify-between px-4 sm:px-5 md:px-6 lg:px-8">
+                {/* Horizontal Stratum Logo - using Logo 2.svg from img directory */}
+                <Link to="/" className="flex items-center space-x-2 sm:space-x-2.5 md:space-x-3" onClick={closeMenu}>
+                  <img 
+                    src="/img/Logo 2.svg" 
+                    alt="Stratum Logo" 
+                    className="h-6 sm:h-6 md:h-7 w-auto" 
+                  />
+                </Link>
+                
+                {/* Close button - always visible with white icon */}
+                <button
+                  className="p-2.5 rounded-lg hover:bg-primary-800 active:bg-primary-900 transition-colors z-50 relative flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation"
+                  onClick={closeMenu}
+                  aria-label="Close navigation menu"
+                  aria-expanded={isMenuOpen}
+                >
+                  <X className="h-5 w-5 text-white" />
+                </button>
+              </div>
               
-              {/* Navigation Content */}
-              <div className="bg-white px-4 py-6 max-h-[calc(100vh-4rem)] overflow-y-auto">
+              {/* Navigation Content - Blue background */}
+              <div className="bg-primary px-4 py-6 max-h-[calc(100vh-4rem)] overflow-y-auto">
                 <nav className="flex flex-col space-y-1">
                   {/* Main navigation items - including Resources dropdown items as main items */}
                   {navigation.map(item => {
@@ -211,8 +230,8 @@ export const Header = () => {
                         to={item.href}
                         className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center touch-manipulation ${
                           isActive(item.href)
-                            ? 'text-primary bg-primary/10 border-l-4 border-primary'
-                            : 'text-gray-700 hover:text-primary hover:bg-gray-50 active:bg-gray-100'
+                            ? 'text-white bg-white/20 border-l-4 border-white'
+                            : 'text-white/90 hover:text-white hover:bg-white/10 active:bg-white/20'
                         }`}
                         onClick={closeMenu}
                       >
@@ -228,8 +247,8 @@ export const Header = () => {
                       to={item.href}
                       className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center touch-manipulation ${
                         isActive(item.href)
-                          ? 'text-primary bg-primary/10 border-l-4 border-primary'
-                          : 'text-gray-700 hover:text-primary hover:bg-gray-50 active:bg-gray-100'
+                          ? 'text-white bg-white/20 border-l-4 border-white'
+                          : 'text-white/90 hover:text-white hover:bg-white/10 active:bg-white/20'
                       }`}
                       onClick={closeMenu}
                     >

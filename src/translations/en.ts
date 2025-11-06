@@ -146,6 +146,8 @@ export const enTranslations: Record<string, string> = {
   'about.team.title': 'Meet Our Leadership Team',
   'about.team.description': 'Our founding team brings together more than a decade of experience from leading projects at Fortune 500 companies, consulting firms, technology companies, and academic institutions.',
   'about.team.expertise': 'EXPERTISE',
+  'about.team.showMore': 'Show more',
+  'about.team.showLess': 'Show less',
   
   // Team member data
   'team.jovaniel.name': 'Jovaniel Rodriguez',

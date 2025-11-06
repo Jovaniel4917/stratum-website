@@ -10,6 +10,7 @@ const container = document.getElementById("root")!;
 const root = createRoot(container);
 
 // Render the app with React StrictMode and SpeedInsights
+// SpeedInsights loads asynchronously to not block render
 root.render(
   <React.StrictMode>
     <App />

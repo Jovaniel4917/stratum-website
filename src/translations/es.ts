@@ -145,6 +145,8 @@ export const esTranslations: Record<string, string> = {
   'about.team.title': 'Conoce Nuestro Equipo de Liderazgo',
   'about.team.description': 'Nuestro equipo fundador reúne más de una década de experiencia liderando proyectos en empresas Fortune 500, firmas consultoras, empresas tecnológicas e instituciones académicas.',
   'about.team.expertise': 'EXPERIENCIA',
+  'about.team.showMore': 'Ver más',
+  'about.team.showLess': 'Ver menos',
   
   // Team member data
   'team.jovaniel.name': 'Jovaniel Agosto',
