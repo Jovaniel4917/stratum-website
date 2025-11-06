@@ -174,9 +174,17 @@ const Home = () => {
       <div className="pt-14 md:pt-16">
         {/* Hero Section - Optimized for FCP and LCP */}
         <section className="hero-section relative flex items-center overflow-hidden h-[60vh] min-h-[400px] sm:min-h-[500px] md:min-h-[600px]">
-          {/* Hero poster background image with dark overlay - cropped from top */}
-          <div className="absolute inset-0 bg-cover bg-center bg-top bg-no-repeat" style={{backgroundImage: 'url("/img/hero_poster.png")'}}></div>
-          <div className="absolute inset-0 bg-black/20"></div>
+               {/* Hero poster background image with dark overlay - optimized loading */}
+                 <img 
+                   src="/img/hero_poster.png" 
+                   alt="" 
+                   className="absolute inset-0 w-full h-full object-cover object-top"
+                   loading="eager"
+                   fetchPriority="high"
+                   decoding="async"
+                   aria-hidden="true"
+                 />
+                 <div className="absolute inset-0 bg-black/20"></div>
           
           {/* Optimized animation elements for mobile performance */}
           <div className="absolute inset-0 overflow-hidden" aria-hidden="true">

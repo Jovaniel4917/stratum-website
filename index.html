@@ -58,6 +58,9 @@
     </style>
 
     <!-- Optimized font loading with font-display: swap and faster loading -->
+    <!-- Self-host fonts for better performance, or use system fonts as fallback -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link 
       rel="preload" 
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
@@ -67,6 +70,17 @@
     <noscript>
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     </noscript>
+    <!-- Fallback font loading to prevent FOIT -->
+    <script>
+      (function() {
+        if (!document.querySelector('link[rel="stylesheet"][href*="fonts.googleapis.com"]')) {
+          var link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap';
+          document.head.appendChild(link);
+        }
+      })();
+    </script>
 
     <!-- Favicons with optimal sizes -->
     <link rel="icon" type="image/svg+xml" href="/Favicon.svg" />
@@ -115,14 +129,26 @@
     <meta name="geo.position" content="18.2208;-66.5901" />
     <meta name="ICBM" content="18.2208, -66.5901" />
 
-    <!-- Preload critical assets for faster LCP -->
-    <link rel="preload" as="image" href="/lovable-uploads/2fa2d4e2-201d-491d-abf3-9f4702b8293c.png" fetchpriority="high" />
-    <link rel="preload" as="image" href="/img/Icon 1.png" fetchpriority="high" />
+    <!-- Preload critical assets for faster LCP - Hero image -->
+    <link rel="preload" as="image" href="/img/hero_poster.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/StratumPR_Logo4.svg" fetchpriority="high" />
 
     <!-- Resource hints for better performance -->
-    <link rel="modulepreload" href="/src/main.tsx" />
-    <link rel="prefetch" href="/src/pages/Services.tsx" />
-    <link rel="prefetch" href="/src/pages/About.tsx" />
+    <!-- Prefetch common pages on idle -->
+    <script>
+      // Prefetch routes on idle for faster navigation
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+          const links = ['/about', '/services', '/contact'];
+          links.forEach(link => {
+            const linkEl = document.createElement('link');
+            linkEl.rel = 'prefetch';
+            linkEl.href = link;
+            document.head.appendChild(linkEl);
+          });
+        });
+      }
+    </script>
 
     <!-- Structured Data - JSON-LD -->
     <script type="application/ld+json">

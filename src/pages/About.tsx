@@ -2,9 +2,12 @@ import HeroSection from "@/components/HeroSection";
 import MissionSection from "@/components/MissionSection";
 import ValuesSection from "@/components/ValuesSection";
 import TeamSection from "@/components/TeamSection";
-import WhyWorkWithUsSection from "@/components/WhyWorkWithUsSection";
+import { lazy, Suspense } from "react";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
+
+// Lazy load WhyWorkWithUsSection to avoid duplicate bundling
+const WhyWorkWithUsSection = lazy(() => import("@/components/WhyWorkWithUsSection"));
 
 const About = () => {
   const { t } = useLanguage();
@@ -40,7 +43,7 @@ const About = () => {
       name: "Jovaniel Rodriguez",
       role: "Co-Founder, Technology Infrastructure",
       bio: "Former consultant with 8+ years in enterprise analytics. Jovaniel leads strategic initiatives and client relationships, specializing in digital transformation and data architecture.",
-      expertise: ["Strategic Consulting", "AI/ML", "Digital Modernization", "Data Governance", "Systems Architecture"],
+      expertise: ["AI/ML", "Digital Modernization", "Data Governance", "Systems Architecture"],
       linkedin: "https://www.linkedin.com/in/jovanielrodriguez-maldonado/",
       email: "j.rodriguez@stratumpr.com",
       image: "/img/Jovaniel.jpg"
@@ -93,7 +96,9 @@ const About = () => {
       <MissionSection />
       <ValuesSection values={values} />
       <TeamSection founders={founders} />
-      <WhyWorkWithUsSection />
+      <Suspense fallback={<div className="py-16"><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">Loading...</div></div>}>
+        <WhyWorkWithUsSection />
+      </Suspense>
     </div>
   );
 };
