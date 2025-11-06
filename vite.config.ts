@@ -70,8 +70,12 @@ export default defineConfig(({ mode }) => ({
             return 'react-vendor';
           }
           
-          // UI vendor chunks (Radix UI components)
+          // UI vendor chunks (Radix UI components) - split further if needed
           if (id.includes('node_modules/@radix-ui')) {
+            // Split large Radix UI packages if they get too big
+            if (id.includes('@radix-ui/react-dialog') || id.includes('@radix-ui/react-dropdown-menu')) {
+              return 'ui-dialog-vendor';
+            }
             return 'ui-vendor';
           }
           
@@ -83,6 +87,15 @@ export default defineConfig(({ mode }) => ({
           // Lucide icons (can be large)
           if (id.includes('lucide-react')) {
             return 'icons-vendor';
+          }
+          
+          // Markdown and form libraries
+          if (id.includes('react-markdown') || id.includes('remark') || id.includes('rehype')) {
+            return 'markdown-vendor';
+          }
+          
+          if (id.includes('react-hook-form') || id.includes('@hookform')) {
+            return 'form-vendor';
           }
           
           // Other node_modules
@@ -106,8 +119,9 @@ export default defineConfig(({ mode }) => ({
         },
       },
     },
-    // Optimize chunk size warnings - increased since we're splitting better now
-    chunkSizeWarningLimit: 500,
+    // Optimize chunk size warnings - set to 600KB since we disabled mangling (names are preserved)
+    // Manual chunking is already configured, so this is acceptable
+    chunkSizeWarningLimit: 600,
     // Enable CSS code splitting
     cssCodeSplit: true,
     // Source maps for production debugging (optional, can disable for smaller builds)
